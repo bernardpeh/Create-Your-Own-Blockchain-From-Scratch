@@ -48,6 +48,9 @@ curl http://localhost:3001/getBlockchain
 
 # check balance
 curl http://localhost:3003/getBalance/0xMinerAddress
+curl http://localhost:3003/getBalance/alice
+curl http://localhost:3003/getBalance/bob
+
 ```
 
 ## Exercises
