@@ -4,11 +4,11 @@
 
 A peer-to-peer (P2P) network is a network in which interconnected nodes ("peers") share resources amongst each other without the use of a centralized administrative system. This technology is not new as we have seen it being used in Napster and BitTorrent.
 
-![Different Systems](centralised_decentralised.jpeg)
+![Different Network Systems](decentralised_pic.png)
 
-* Centralised System - Centralised control (single point of failure)
+* Centralised System - The most common system we see today. Centralised control means single point of failure.
 
-* Distributed System - Distribute part of the resource to other nodes but could still be centrally controlled with points of failure.
+* Distributed System - Distribute part of the resource to other nodes in the network but could still be centrally controlled with points of failure.
 
 * Decentralised System - Every node is fully redundant with no points of failure.
  
@@ -31,21 +31,81 @@ The code for the simple websocket server with the api endpoint will be as follow
 ```
 # src/chapter_01/main.js
 
+var express = require("express")
+var bodyParser = require('body-parser')
+var WebSocket = require("ws")
+
+var http_port = process.env.HTTP_PORT || 3001
+var p2p_port = process.env.P2P_PORT || 6001
+var initialPeers = process.env.PEERS ? process.env.PEERS.split(',') : []
+var peers = []
+var wss
+
+var initHttpServer = () => {
+
+    var app = express()
+    app.use(bodyParser.json())
+
+    app.get('/ping', (req, res) => {
+        let ping = "I'm alive"
+        console.log(ping)
+        broadcast(ping)
+        res.send(ping)
+    });
+
+    app.listen(http_port, () => console.log('Listening http on port: ' + http_port))
+};
+
+
+var initP2PServer = () => {
+
+    wss = new WebSocket.Server({port: p2p_port})
+    wss.on('connection', (ws) => {
+        // do something and broadcast incoming message
+        ws.on('message', (data) => {
+            console.log(data)
+            broadcast(JSON.parse(data))
+        });
+    });
+
+    console.log('listening websocket p2p port on: ' + p2p_port)
+
+};
+
+var initPeers = (initialPeers) => {
+    initialPeers.forEach( (peer) => {
+        var ws = new WebSocket(peer)
+        peers.push(ws)
+    })
+};
+
+var broadcast = (data) => {
+    peers.forEach(ws => {
+        ws.send(JSON.stringify(data))
+    });
+}
+
+initHttpServer();
+initP2PServer();
+initPeers(initialPeers)
 ```
 
 Open up 3 terminals, Lets assign terminal 1 to node 1 and vice versa.
 
 In Terminal 1,
+
 ```
 HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_01/main.js
 ```
 
 In Terminal 2,
+
 ```
 HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_01/main.js 
 ```
 
 In Terminal 3,
+
 ```
 HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_01/main.js 
 ```
@@ -58,25 +118,29 @@ Open another Terminal. Let's call this terminal 4 and make a simple curl call to
 curl http://localhost:3003/ping
 ```
 
-Now check terminal 1,2 and 3. Do they all display the same message? If yes, all the nodes are synchronised. You have created a very simple P2P network.
+Now check terminal 1,2 and 3. Do they all display the same message? If yes, all the nodes are synchronised. Congratulations, you have created a very simple P2P network.
 
 ## Using Currencies in P2P network 
 
-Unlike making digital copies of a file, using PSP network to replicate **real time** digital transactions means that all the nodes have to be synchronised with each other at any point in time in order to prevent double spending. There needs to be rules in which we group different transactions into batches for synchronisation. The more nodes we have, the slower it is to propagate the batches of transactions. We will leave this for chapter 3.
+Unlike making digital copies of a file, using P2P network to replicate **real time** digital transactions means that all the nodes have to be synchronised with each other in order to prevent double spending. There needs to be rules to group different transactions into batches for synchronisation. 
+
+The more nodes we have, the slower and harder it is for the batches of transactions to propagate. Most importantly, the network should be resilient to bad actors who propagate false transactional data. The network needs to be "smart" to know which batches of transaction are legitimate and which is not. 
+
+There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
 ## Exercises
 
-{quiz, id: q1}
+{quiz, id: q1, attempts: 0}
 ? Why is decentralisation important?
-! consider redundancy and security
+`! consider redundancy and security
 {/quiz}
 
-{quiz, id: q2}
+{quiz, id: q2, attempts: 0}
 ? How is cost, transaction speed and decentralisation related?
-! choose 2 out of 3
+`! choose 2 out of 3
 {/quiz}
 
-{quiz, id: q3}
+{quiz, id: q3, attempts: 0}
 ? Is Bitcoin fully decentralised? How do you know?
-! consider decentralisation from different perspectives, ie network and human.
+`! consider decentralisation from different perspectives, ie network and human.
 {/quiz}
