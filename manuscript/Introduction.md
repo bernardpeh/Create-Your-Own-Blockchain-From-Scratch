@@ -24,4 +24,4 @@ The best way to learn about Blockchain is to create a cryptocurrency from scratc
 
 In this 5 part tutorial series, we will attempt to create a coin called MyCoin. We will be using Javascript and focus on the concepts rather than the syntax.
 
-**Disclaimer: DO NOT copy the code in this tutorial wholesale without know what it does.**
+**Disclaimer: DO NOT copy the code in this course wholesale without know what it does.**

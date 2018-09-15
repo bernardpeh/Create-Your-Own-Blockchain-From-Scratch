@@ -4,8 +4,16 @@ This is a Leanpub course - https://leanpub.com/c/create-your-own-blockchain-from
  
 ## Installation
 
+To install,
+
 ```
 npm install
+```
+
+The source code is in the different chapters inside the src directory. To test different chapters, simply run
+
+```
+node src/chapter_x/main.js
 ```
 
 ## Test Scenario
