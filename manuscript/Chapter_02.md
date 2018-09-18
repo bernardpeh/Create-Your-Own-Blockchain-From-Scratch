@@ -6,10 +6,12 @@ The Blockchain is simply a chain of blocks. In the technical term, it is an inse
 
 Each block consists of transactions and the miner is responsible to assemble all the transactions in the block.
 
-![blockchain overview](en-blockchain-overview.svg)
-{caption: "Image Credit: bitcoin.org"}
+![blockchain overview](en-blockchain-overview.jpg)
+*Image Credit: bitcoin.org*
 
 Each transaction is hashed and then paired repeatedly until the last single hash remains (merkle root). The merkle root is stored in the block header referencing the previous block's merkle root, forming an immutable chain.
+
+## The Block
 
 Let us first create a simple block.
 
@@ -39,6 +41,8 @@ The block has all the properties as we described previously. A big part of Block
 
 Q1. What creates uniqueness in the Block?
 
+## The Transaction
+
 Now lets create a simple Transaction object.
 
 ```
@@ -55,7 +59,11 @@ class Transaction{
 module.exports = Transaction;
 ```
 
-Each Transaction records who is sending how much to who. This is a simple Account Based Transaction Model. Can you see a problem with this class?
+Each Transaction records who is sending how much to who. This is a simple Account Based Transaction Model. 
+
+Q2. Can you see a problem with this class?
+
+## The Chain
 
 Now, the actual Blockchain class.
 
@@ -124,9 +132,9 @@ module.exports = Blockchain;
 
 The actual implementation of the chain is quite simple. Its basically an incremental insert-only array of the Blocks object.
 
-Q2. Why is there a need for pendingTransactions?
+Q3. Why is there a need for pendingTransactions?
 
-Q3. What is the problem with the getAddressBalance function?
+Q4. What is the problem with the getAddressBalance function?
 
 It time to add 4 more api endpoints to main.js, ie createTransaction, createBlock, getBlockchain and getBalance.
 
