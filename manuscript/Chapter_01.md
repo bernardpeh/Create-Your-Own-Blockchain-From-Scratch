@@ -90,27 +90,27 @@ initP2PServer();
 initPeers(initialPeers)
 ```
 
+## Testing
+
 Open up 3 terminals, Lets assign terminal 1 to node 1 and vice versa.
 
-In Terminal 1,
+In Terminal 1, start the node
 
 ```
 HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_01/main.js
 ```
 
-In Terminal 2,
+In Terminal 2, start the node
 
 ```
 HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_01/main.js 
 ```
 
-In Terminal 3,
+In Terminal 3, start the node
 
 ```
 HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_01/main.js 
 ```
-
-## Testing
 
 Open another Terminal. Let's call this terminal 4 and make a simple curl call to Node 3.
 
@@ -128,19 +128,16 @@ The more nodes we have, the slower and harder it is for the batches of transacti
 
 There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
+## Resources 
+
+* [Gossip Protocol](https://en.wikipedia.org/wiki/Gossip_protocol)
+
 ## Exercises
 
-{quiz, id: q1, attempts: 0}
-? Why is decentralisation important?
-`! consider redundancy and security
-{/quiz}
+Q1. Why is decentralisation important?
 
-{quiz, id: q2, attempts: 0}
-? How is cost, transaction speed and decentralisation related?
-`! choose 2 out of 3
-{/quiz}
 
-{quiz, id: q3, attempts: 0}
-? Is Bitcoin fully decentralised? How do you know?
-`! consider decentralisation from different perspectives, ie network and human.
-{/quiz}
+Q2. How is cost, transaction speed and decentralisation related?
+
+
+Q3. Is Bitcoin fully decentralised? How do you know?
