@@ -2,7 +2,7 @@ const CryptoJs= require("crypto-js");
 
 class Block {
 
-    constructor(timestamp, transactions, previousHash = '') {
+    constructor(timestamp, transactions, previousHash = '', data ='') {
         this.previousHash = previousHash
         this.timestamp = timestamp
         this.transactions = transactions

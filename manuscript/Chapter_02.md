@@ -49,10 +49,11 @@ Now lets create a simple Transaction object.
 # src/chapter_02/Transaction.js
 
 class Transaction{
-    constructor(fromAddress, toAddress, amount){
-        this.fromAddress = fromAddress;
-        this.toAddress = toAddress;
-        this.value = amount;
+    constructor(fromAddress, toAddress, amount, data=''){
+        this.fromAddress = fromAddress
+        this.toAddress = toAddress
+        this.value = amount
+        this.data = data
     }
 }
 

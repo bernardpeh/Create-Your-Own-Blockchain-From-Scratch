@@ -1,3 +1,3 @@
-# Chapter 5: Public Key Cryptography
+# Chapter 6: UTXO Transaction Model
 
-> What is needed is an electronic payment system based on cryptographic proof instead of trust, allowing any two willing parties to transact directly with each other without the need for a trusted third party. - Bitcoin's Whitepaper
+> To allow value to be split and combined, transactions contain multiple inputs and outputs. Normally there will be either a single input from a larger previous transaction or multiple inputs combining smaller amounts, and at most two outputs: one for the payment, and one returning the change, if any, back to the sender. - Bitcoin's Whitepaper

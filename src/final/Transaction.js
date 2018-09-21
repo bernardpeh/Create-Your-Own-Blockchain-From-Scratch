@@ -8,6 +8,7 @@ class Transaction {
         this.txOut = txOut
         this.timestamp = Date.now()
         this.hash = CryptoJs.SHA256(this.txIn.toString() + this.timestamp + this.txOut.toString()).toString();
+        this.data = data
     }
 
 }

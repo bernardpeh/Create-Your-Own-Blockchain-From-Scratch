@@ -1,3 +1,3 @@
-# Chapter 4: Incentivisation and Coin Economics
+# Chapter 5: Public Key Cryptography
 
-> By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network, and provides a way to initially distribute coins into circulation, since there is no central authority to issue them. - Bitcoin's Whitepaper
+> What is needed is an electronic payment system based on cryptographic proof instead of trust, allowing any two willing parties to transact directly with each other without the need for a trusted third party. - Bitcoin's Whitepaper
