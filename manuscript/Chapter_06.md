@@ -1,3 +1,2 @@
-# Chapter 6: Career in the Blockchain Industry
+# Chapter 6: Smart Contracts
 
-The Blockchain opens up a whole lot of opportunities in the technology sector.

@@ -123,10 +123,33 @@ var initHttpServer = () => {
         }
     });
     ...
-};
+}
+var initP2PServer = () => {
+    wss = new WebSocket.Server({port: p2p_port})
+    wss.on('connection', (ws) => {
+        // do something and broadcast incoming message
+        ws.on('message', (data) => {
+            // if a new block is created, update current chain and broadcast again
+            let parsedData = JSON.parse(data)
+            if (parsedData.hasOwnProperty('previousHash')) {
+                console.log('Syncing Blocks: '+JSON.stringify(parsedData))
+                // current block
+                let currentBlock = mycoin.getBlock(mycoin.getBlockHeight())
+
+                // if new Block found, verify it
+                let hash = CryptoJs.SHA256(parsedData.previousHash + parsedData.timestamp + JSON.stringify(parsedData.transactions) + parsedData.nonce).toString()
+                if (currentBlock.hash == parsedData.previousHash && parsedData.hash == hash) {
+                    mycoin.addBlock(parsedData)
+                    broadcast(parsedData)
+                }
+            }
+        })
+    })
+    console.log('listening websocket p2p port on: ' + p2p_port)
+}
 ```
 
-In mineBlock, we make sure we provide the miner Address.
+In mineBlock api, we make sure we provide the miner Address. Once a block is produced, we broadcast the data. All nodes receiving the data must verify the data before accepting it into the chain. Once this protocol is established, we will have a consistent decentralised ledger.
 
 ## Incentivisation
 
