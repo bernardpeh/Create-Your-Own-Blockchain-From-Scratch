@@ -11,7 +11,9 @@ class Blockchain{
     }
 
     createGenesisBlock() {
-        return new Block('this_is_genesis_address', [], "0")
+        // why do we need to hardcode a time?
+        let tx = new Transaction(null,'04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec', 30,'',1535766956)
+        return new Block(1535766956, [tx], "0")
     }
 
     setDifficulty(difficulty) {

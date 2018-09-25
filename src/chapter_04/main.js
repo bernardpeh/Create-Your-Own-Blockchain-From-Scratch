@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require('body-parser')
 const WebSocket = require("ws")
 const CryptoJs= require("crypto-js")
+const wallet = require('./Wallet')
 
 const Blockchain = require('./Blockchain')
 const Transaction = require('./Transaction')
@@ -14,11 +15,11 @@ var peers = []
 var wss
 
 // create mycoin blockchain
-let mycoin = new Blockchain();
+let mycoin = new Blockchain()
 // Set the difficulty based on your CPU speed
-mycoin.setDifficulty(3);
+mycoin.setDifficulty(3)
 // set miner reward
-mycoin.setMiningReward(12.5);
+mycoin.setMiningReward(12.5)
 
 var initHttpServer = () => {
 
@@ -33,11 +34,27 @@ var initHttpServer = () => {
     });
 
     app.post('/createTransaction', (req, res) => {
-        // req.body.data
-        mycoin.createTransaction(new Transaction(req.body.fromAddress, req.body.toAddress, req.body.value));
-        let pendingTx = JSON.stringify(mycoin.getPendingTransactions())
-        broadcast(pendingTx)
-        res.send('Current Pending Txs: '+pendingTx+'\n')
+
+        // check balance
+        if (mycoin.getAddressBalance(req.body.fromAddress) - req.body.value < 0) {
+            res.send('Not enough funds!\n')
+            return false
+        }
+
+        let tx = new Transaction(req.body.fromAddress, req.body.toAddress, req.body.value)
+        // Let us sign the tx with the private key. Can you spot anything?
+        let sig = wallet.sign(tx.hash, req.body.privKey)
+        // if the signer is an owner of the address, we insert it in the pending tx queue
+        if (wallet.verifySignature(tx.hash, sig, req.body.fromAddress)) {
+            mycoin.createTransaction(tx);
+            let pendingTx = JSON.stringify(mycoin.getPendingTransactions())
+            broadcast(pendingTx)
+            res.send('Current Pending Txs: '+pendingTx+'\n')
+        }
+        else {
+            res.send('You are not the owner of the funds!')
+            return
+        }
     });
 
     app.post('/mineBlock', (req, res) => {

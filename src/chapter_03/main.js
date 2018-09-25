@@ -33,6 +33,13 @@ var initHttpServer = () => {
     });
 
     app.post('/createTransaction', (req, res) => {
+
+        // check balance
+        if (mycoin.getAddressBalance(req.body.fromAddress) - req.body.value < 0) {
+            res.send('Not enough funds!\n')
+            return false
+        }
+
         // req.body.data
         mycoin.createTransaction(new Transaction(req.body.fromAddress, req.body.toAddress, req.body.value));
         let pendingTx = JSON.stringify(mycoin.getPendingTransactions())

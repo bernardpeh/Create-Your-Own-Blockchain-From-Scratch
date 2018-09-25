@@ -60,7 +60,7 @@ class Transaction{
 module.exports = Transaction;
 ```
 
-Each Transaction records who is sending how much to who. This is a simple Account Based Transaction Model. 
+Each Transaction records who is sending how much to who. This is a simple Account Based Transaction Model that scans through the chain to get the balance.
 
 Q2. Can you see a problem with this class?
 
@@ -290,6 +290,8 @@ curl http://localhost:3001/getBlockchain
 curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
 ```
+
+Did you see any problems with alice sending 40 tokens to bob? How do you fix it?
 
 ## Resources
 
