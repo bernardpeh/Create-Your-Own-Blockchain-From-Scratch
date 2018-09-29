@@ -71,6 +71,7 @@ console.log('private key '+w.getPrivateKey())
 ```
 
 Lets run it.
+
 ```
 node src/chapter_04/CreateAddress.js
 
@@ -79,6 +80,7 @@ private key c64bf4124a706e8e1d2679d2d37919d223abd76b8b0ec435b28b1447a200...
 ```
 
 The randomness in the algorithm ensures that you get different public and private keys everytime you run it. So let us use the following keys:
+
 ```
 # Alice pubKey: 04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 and privKey: 9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17
@@ -221,4 +223,4 @@ curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734
 
 ## Resources
 
-[Bitcoin Addresses](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses)
+* [Bitcoin Addresses](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses)

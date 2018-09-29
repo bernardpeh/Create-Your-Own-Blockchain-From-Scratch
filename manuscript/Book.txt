@@ -4,5 +4,7 @@ Chapter_02.md
 Chapter_03.md
 Chapter_04.md
 Chapter_05.md
+Chapter_06.md
+Chapter_07.md
 Conclusion.md
 
