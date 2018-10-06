@@ -15,10 +15,9 @@ In practice, the balance of an address in the account transaction model is store
 * The transaction must have a signature matching the owner of the input for every input.
 
 ![UTXO Model](utxo-model.jpg)
-
-Q1. Why is the sum of output funds always greater than input funds?
-
 *Image Credit: bitcoin.org*
+
+Q1. In a transaction, why is the sum of output always lesser than the sum of input?
 
 Let us update our Transaction class, replacing toAddress and fromAddress by txIn and txOut classes.
 

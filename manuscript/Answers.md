@@ -1,6 +1,6 @@
 # Answers
 
-** Try not to look at the answers unless you are stuck!**
+**Try not to look at the answers unless you are stuck!**
 
 ## Introduction
 
@@ -206,9 +206,9 @@ Can you see a problem with injecting the private key into the payload? How can w
 
 ## Chapter 5
 
-Q1. Why is the sum of output funds always greater than input funds?
+Q1. In a transaction, why is the sum of output always lesser than the sum of input?
 
-Ans: Every output needs to include the tx fees.
+Ans: The output needs to include the tx fees.
 
 Q2. Write the code for the getAddressBalance function in Blockchain.js
 

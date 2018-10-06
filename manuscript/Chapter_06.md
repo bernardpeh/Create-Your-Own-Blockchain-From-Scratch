@@ -1,14 +1,8 @@
 # Chapter 6: Smart Contracts
 
-> A smart contract is a computerized transaction protocol that executes
-  the terms of a contract. The general objectives are to satisfy common
-  contractual conditions (such as payment terms, liens, confidentiality,
-  and even enforcement), minimize exceptions both malicious and
-  accidental, and minimize the need for trusted intermediaries. Related
-  economic goals include lowering fraud loss, arbitrations and
-  enforcement costs, and other transaction costs. - "The Idea of Smart Contracts" by Nick Szabo
+> A smart contract is a computerized transaction protocol that executes the terms of a contract. The general objectives are to satisfy common contractual conditions (such as payment terms, liens, confidentiality, and even enforcement), minimize exceptions both malicious and accidental, and minimize the need for trusted intermediaries. Related economic goals include lowering fraud loss, arbitrations and enforcement costs, and other transaction costs. - "The Idea of Smart Contracts" by Nick Szabo
 
-![trolley](trolley.jpg)
+![A simple trolley contract](trolley.jpg)
 
 A good analogy of how a Smart Contract work is like using a coin to rent a trolley. You stake something of value (a coin) and get it back until certain condition is fulfilled (you return the trolley). Think of how we could have done this by just employing a person to take down details of the renter and watch out for them when they leave the shop and making sure they return the trolley.
 
@@ -78,7 +72,7 @@ Let's say the sender is Alice and the Receiver is Bob.
 * OP_VERIFY checks the value at the top of the stack. If false, script is terminated. If true, it pops the true off the stack.
 * OP_CHECKSIG now checks the Pubkey, all data required to be signed and the signature comes from the same person.
 
-Refer to this [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef)
+Refer to this [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef) as an example.
 
 
 ## Making MyCoin Smart
