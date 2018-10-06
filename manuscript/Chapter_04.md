@@ -7,9 +7,11 @@
 * The public key can verify that the private key signed a message.
 * The private key can decrypt the message encrypted by the public key.
 
-The cryptocurrency addresses that we have been using, ie alice, bob and david were just examples. In the crypto world, each address is mathematically related to the public key. In our course, let's just assume each address is the public key for the sake of simplicity.
+The cryptocurrency addresses that we have been using, ie alice, bob and miner were just examples. In the crypto world, each address is mathematically related to the public key. In our course, let's just assume each address is the public key for the sake of simplicity.
 
-Before an amount can be spend from an account, the user needs to sign the transaction with his private key. Since the public key and transaction details is known, each nodes can verify that the owner is indeed the rightful owner of the account.
+![pki](pki.png)
+
+Before an amount can be spend from an account, the user needs to sign the transaction with his private key. Since the public key and transaction details are known, each nodes can verify that the owner is indeed the rightful owner of the account.
 
 Instead of using the addresses "Alice" and "Bob", let us create a proper wallet for each one of them.
 
@@ -61,7 +63,7 @@ module.exports = Wallet;
 [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) is a type of elliptic curve cryptography used by Bitcoin. We will be using it to generate the public and private key pair. 
 
 ```
-# src/chapter_04/Wallet.js
+# src/chapter_04/CreateAddress.js
 
 const wallet = require('./Wallet')
 
@@ -79,6 +81,8 @@ public key 04dc6d9a118abb5c26961e6f814d6f61218adee9ced518de231ce63587f9...
 private key c64bf4124a706e8e1d2679d2d37919d223abd76b8b0ec435b28b1447a200...
 ```
 
+Q1. Why is Bitcoin address much shorter than the public key we generated?
+
 The randomness in the algorithm ensures that you get different public and private keys everytime you run it. So let us use the following keys:
 
 ```
@@ -90,7 +94,9 @@ and privKey: 9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17
 # Miner pubKey: 046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2 and privKey: f4a13bd5e51b786b1295426cd19b5f23ccf1ee27046baf90b0bb1788a6317f79
 ```
 
-It's very common to see R, S and V in Elliptic curve cryptography. Proof that this signature is a signed "hello" message from alice
+It's very common to see R, S and V in Elliptic curve cryptography. 
+
+Q2. Proof that this signature is a signed "hello" message from alice
 
 ```
 {"r":"67a63bac0a761021b38c8d5ce602bc2de3210bd236f6b59539b3526395ad2ec8","s":"ed2edaeb2e1893c78a460a4055ca1f6cae41e1eca6da7ae5ffc44981c33c3c97","recoveryParam":1}
@@ -98,22 +104,9 @@ It's very common to see R, S and V in Elliptic curve cryptography. Proof that th
 
 ## Pre-Mine
 
-Pre-mining is the creation of a crypto coins before the cryptocurrency is made available for public use. Where would you make changes in the code to pre-mine some mycoin to alice?
+Pre-mining is the creation of a crypto coins before the cryptocurrency is made available for public use. 
 
-```
-# src/chapter_04/Blockchain.js
-
-class Blockchain {
-
-    ...
-    createGenesisBlock() {
-        let tx = new Transaction(null,'04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec', 30)
-        // why do we need to hardcode a time?
-        return new Block(1535766956, [tx], "0")
-    }
-    ...
-}
-```
+Q3. Where would you make changes in the code to pre-mine some mycoin to alice? Pre-mine 30 coins to alice.
 
 ## Adding Hash to Transaction Class
 
@@ -138,42 +131,12 @@ class Transaction{
 
 module.exports = Transaction;
 ```
+
 ## Proofing Ownership Before Sending Coins
 
-When Alice wants to send some coins to Bob, she needs to proof she owns the coin. Let us update main.js
+When Alice wants to send some coins to Bob, she needs to proof she owns the coin. Let us update main.js.
 
-```
-# src/chapter_04/main.js
-
-...
-const wallet = require('./Wallet')
-...
-    app.post('/createTransaction', (req, res) => {
-
-        // check balance
-        if (mycoin.getAddressBalance(req.body.fromAddress) - req.body.value < 0) {
-            res.send('Not enough funds!\n')
-            return false
-        }
-
-        let tx = new Transaction(req.body.fromAddress, req.body.toAddress, req.body.value)
-
-        // Let us sign the tx with the private key
-        let sig = wallet.sign(tx.hash, req.body.privKey)
-        // if the signer is an owner of the address, we insert it in the pending tx queue
-        if (wallet.verifySignature(tx.hash, sig, req.body.fromAddress)) {
-            mycoin.createTransaction(tx);
-            let pendingTx = JSON.stringify(mycoin.getPendingTransactions())
-            broadcast(pendingTx)
-            res.send('Current Pending Txs: '+pendingTx+'\n')
-        }
-        else {
-            res.send('You are not the owner of the funds!')
-            return
-        }
-    });
-...
-```
+Q4. Add logic to createTransaction API endpoint in main.js to check that sender is allowed to spend the funds before adding the transaction to the pending transactions queue.
 
 ## Testing
 

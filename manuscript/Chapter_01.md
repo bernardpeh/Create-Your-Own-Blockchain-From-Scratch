@@ -22,6 +22,8 @@ Let us assume that we have 3 nodes in our decentralised system.
 * Node 2 is connected to Node 1. (HTTP_PORT=3002, P2P_PORT=6002) 
 * Node 3 is connected to Node 2. (HTTP_PORT=3003, P2P_PORT=6003)
 
+![infrastructure layout](infrastructure_layout.png)
+
 The connected nodes gossip with each other to transfer data. If the ledger in Node 3 is updated, the data will be broadcasted to Node 2 and eventually to Node 1.
 
 We will be using this simple network throughout all the chapters of the course.
@@ -128,16 +130,21 @@ The more nodes we have, the slower and harder it is for the batches of transacti
 
 There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
+## Exercises
+
+Q1. Would you use decentralised or centralised systems for the following use cases and why?
+
+* Creation of a national identity system for its citizens.
+* A parcel tracking system for company xyz
+* Tracking of rice production between Vietnam and Australia.
+* Voting for the next government.
+* Record the transaction history of lotus miles (points) of vietnam airlines.
+ 
+Q2. How is cost, transaction speed and decentralisation related?
+
+Q3. Is Bitcoin fully decentralised? How do you know?
+
 ## Resources 
 
 * [Gossip Protocol](https://en.wikipedia.org/wiki/Gossip_protocol)
 
-## Exercises
-
-Q1. Why is decentralisation important?
-
-
-Q2. How is cost, transaction speed and decentralisation related?
-
-
-Q3. Is Bitcoin fully decentralised? How do you know?

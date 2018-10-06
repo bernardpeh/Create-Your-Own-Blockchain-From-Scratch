@@ -14,7 +14,7 @@ There are too many opportunities to be discussed. A few popular ones are listed 
 * Legislation
 * Consulting
 
-## Private Chains
+## Private (Consortium) Chains
 
 * Supply Chain/Logistics
 * Medical Records

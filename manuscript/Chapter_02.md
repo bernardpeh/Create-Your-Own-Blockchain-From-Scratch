@@ -4,7 +4,7 @@
 
 The Blockchain is simply a chain of blocks. In the technical term, it is an insert only database. The ecosystem ensures that the data in the Blockchain cannot be changed and hence protect against double spending when used as a currency.
 
-Each block consists of transactions and the miner is responsible to assemble all the transactions in the block.
+Each block consists of transactions and the miner (node) is responsible to assemble all the transactions in the block.
 
 ![blockchain overview](en-blockchain-overview.jpg)
 *Image Credit: bitcoin.org*
@@ -39,7 +39,7 @@ module.exports = Block;
 
 The block has all the properties as we described previously. A big part of Blockchain is the hashing algorithm. We are using the same hashing algorithm that Bitcoin uses, ie SHA256.
 
-Q1. What creates uniqueness in the Block?
+Q1. What is the unique identifier in the Block? How do we ensure that its unique?
 
 ## The Transaction
 
@@ -291,7 +291,7 @@ curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
 ```
 
-Did you see any problems with alice sending 40 tokens to bob? How do you fix it?
+Q5. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
 
 ## Resources
 

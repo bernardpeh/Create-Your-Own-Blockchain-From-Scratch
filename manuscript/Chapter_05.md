@@ -2,20 +2,25 @@
 
 > To allow value to be split and combined, transactions contain multiple inputs and outputs. Normally there will be either a single input from a larger previous transaction or multiple inputs combining smaller amounts, and at most two outputs: one for the payment, and one returning the change, if any, back to the sender. - Bitcoin's Whitepaper
 
-We have been using Account Balance transaction model so far. In Bitcoin, transactions work differently. In each transaction, there are inputs and outputs. The outputs of a transaction records the addresses and amount to send to. The inputs to a transaction provides evidence to consume the outputs of previous transactions. 
+We have been using Account Balance transaction model so far. In Bitcoin, transactions work differently. In each transaction, there are inputs and outputs. The output of a transaction records the addresses and amount to send to. Each input to a transaction provides evidence to consume an output from a previous transaction. 
 
-Any outputs that have to be spent are called **Unspent Transaction Output** (UTXO).
+Any output that can be spent are called **Unspent Transaction Output** (UTXO).
+
+In practice, the balance of an address in the account transaction model is stored in a global state. In the UTXO model, it is the sum of all UTXO of an address.
 
 ## 3 Rules of UTXO model
 
-* Every transaction must prove that the sum of its inputs are greater than the sum of its outputs. (Why?)
+* Every transaction must prove that the sum of its inputs are greater than the sum of its outputs. 
 * Every referenced input must be valid and not yet spent.
 * The transaction must have a signature matching the owner of the input for every input.
 
 ![UTXO Model](utxo-model.jpg)
+
+Q1. Why is the sum of output funds always greater than input funds?
+
 *Image Credit: bitcoin.org*
 
-Let us update our Transaction class
+Let us update our Transaction class, replacing toAddress and fromAddress by txIn and txOut classes.
 
 ```
 # src/chapter_05/Transaction.js
@@ -70,7 +75,7 @@ class TxOut {
 module.exports = TxOut
 ```
 
-To make life easy for us when getting the balance of all address, we create another new class call UTXO.js
+To make life easy for us when getting the balance of all addresses, we create another new UTXO class.
 
 ```
 # src/chapter_05/UTXO.js
@@ -97,7 +102,7 @@ Before we move on, let us recap some basic concepts:
 
 ## Updating our Blockchain
 
-We all this conceptual change, we need to update our Blockchain code
+With all these changes, we need to update our Blockchain code. As an example, let us premine 3 outputs - 30 and 20 and 10 mycoins to alice
 
 ```
 # src/chapter_05/Bockchain.js
@@ -171,16 +176,14 @@ const UTXO = require('./UTXO')
     }
 
     getAddressBalance(address){
-        let balance = 0;
-        let utxos = this.getUTXO(address)
-        for (const utxo of utxos) {
-            balance += utxo.value
-        }
-        return balance;
+        // try writing the code for this part
+        ...
     }
     ...
  }
 ```
+
+Q2. Write the code for the getAddressBalance function in Blockchain.js
 
 Now in main.js
 
@@ -199,7 +202,7 @@ const TxOut = require('./TxOut')
             return false
         }
 
-        // Get the UTXO and decide how many utxo to sign. this is the most tricky part. What problems can you see?
+        // Get the UTXO and decide how many utxo to sign.
         let utxos = mycoin.getUTXO(req.body.fromAddress)
         let accumulatedUTXOVal = 0
         let requiredUTXOs = []
@@ -210,6 +213,7 @@ const TxOut = require('./TxOut')
                 break
             }
         }
+
         let txIns = []
         let requiredUTXOValue = 0
         // lets spend the the UTXO by signing them. What is wrong with this?
@@ -320,3 +324,7 @@ curl http://localhost:3003/getBlockchain
 curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 ```
+
+## Resources
+
+* [Optimising UTXO](https://medium.com/@lopp/the-challenges-of-optimizing-unspent-output-selection-a3e5d05d13ef)

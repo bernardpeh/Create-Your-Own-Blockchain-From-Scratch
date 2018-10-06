@@ -8,14 +8,14 @@ There are many [Consensus Algorithm](https://www.coindesk.com/short-guide-blockc
 
 ## Proof of Work
 
-Proof of Work is about using computing power to find a cryptographic solution (a hash) for the right to generate the next block in the Blockchain, ie you proof that the block you created is legit. The hash is hard to find but easy to verify.
+Proof of Work is about using computing power to find a cryptographic solution (a hash) for the right to generate the next block in the Blockchain, ie you proof that the block you created is legit. **The hash should be hard to find but easy to verify**.
 
 In Bitcoin, the right hash is one with a specific number of zeros prefixing it. The difficulty property defines how many prefixing zeros the hash must have.
 
-The new Block code
+Q1. Write a mineBlock function that accepts a difficulty parameter in the Block class. this.hash must also be guaranteed unique.
 
 ```
-# src/chapter_03
+# src/chapter_03/Block.js
 
 const CryptoJs= require("crypto-js");
 
@@ -25,29 +25,31 @@ class Block {
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.hash = this.calculateHash();
-        this.nonce = 0;
     }
 
     calculateHash() {
-        return CryptoJs.SHA256(this.previousHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce).toString();
+        return CryptoJs.SHA256(this.previousHash + this.timestamp + JSON.stringify(this.transactions)).toString();
     }
 
     mineBlock(difficulty) {
-        while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
-            this.nonce++;
-            this.hash = this.calculateHash();
-        }
+        ...
     }
 }
 
 module.exports = Block;
 ```
 
-New Blocks now need to be mined with a miner address and a difficulty set. The difficulty is the number of 0s that the hash must start with and the nonce creates the randomness for new hash in loops.
+## Incentivisation
 
-Q1. Why is the nonce important?
+> By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network, and provides a way to initially distribute coins into circulation, since there is no central authority to issue them. - Bitcoin's Whitepaper
 
-In Blockchain.js, we need to upgrade the addBlock function to mineBlock.
+One very clever thing that Satoshi did was to reward nodes for becoming a block producer. This move attracts global participation, achieving successful decentralisation.
+
+Anyone could become a miner if they are willing to use their computational power. They will be rewarded with some currency (block reward, transaction fees) for finding the next block. In the case of Bitcoin, its 12.5 BTC at the time of writing. 
+
+It is also important to note that due to the limited supply and price of Bitcoin, there is no incentive to cheat. Attacking the network successfully would require more than 51% of malicious nodes which would be very costly and achieves no monetary incentives.
+
+Q2. In Blockchain.js, add a mineBlock function that accepts a minerAddress argument. Add a new transaction before all other pending transactions. This is the coinbase transaction to reward the miner only.
 
 ```
 # src/chapter_03/Blockchain.js
@@ -80,24 +82,13 @@ class Blockchain{
     }
     
     mineBlock(minerAddress) {
-        // coinbase transaction
-        this.pendingTransactions.unshift(new Transaction(null, minerAddress, this.miningReward))
-
-        // create new block based on current timestamp, all pending tx and previous blockhash
-        let block = new Block(Date.now(), this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
-        block.mineBlock(this.difficulty)
-
-        this.chain.push(block)
-        // reset pending Transactions
-        this.pendingTransactions = []
+        ...
     }
     ...
 }
 
 module.exports = Blockchain;
 ```
-
-Noticed that we added a new transaction before all other pending transactions. This is the coinbase transaction to reward the miner only.
 
 Next, let us change the api endpoint in main.js from createBlock to mineBlock,
 
@@ -151,16 +142,6 @@ var initP2PServer = () => {
 
 In mineBlock api, we make sure we provide the miner Address. Once a block is produced, we broadcast the data. All nodes receiving the data must verify the data before accepting it into the chain. Once this protocol is established, we will have a consistent decentralised ledger.
 
-## Incentivisation
-
-> By convention, the first transaction in a block is a special transaction that starts a new coin owned by the creator of the block. This adds an incentive for nodes to support the network, and provides a way to initially distribute coins into circulation, since there is no central authority to issue them. - Bitcoin's Whitepaper
-
-One very clever thing that Satoshi did was to reward nodes for becoming a block producer. This move attracts global participation, achieving successful decentralisation.
-
-Anyone could become a miner if they are willing to use their computational power. They will be rewarded with some currency (block reward, transaction fees) for finding the next block. In the case of Bitcoin, its 12.5 BTC at the time of writing. 
-
-It is also important to note that due to the limited supply and price of Bitcoin, there is no incentive to cheat. Attacking the network successfully would require more than 51% of malicious nodes which would be very costly and achieves no monetary incentives.
-
 ## Testing
 
 In Terminal 1, start the node
@@ -198,7 +179,3 @@ curl http://localhost:3001/getBlockchain
 curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
 ```
-
-## Exercise
-
-* Whats the relationship between the block's difficulty and the nonce?

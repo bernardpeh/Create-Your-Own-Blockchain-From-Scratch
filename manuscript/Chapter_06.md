@@ -7,14 +7,18 @@
   accidental, and minimize the need for trusted intermediaries. Related
   economic goals include lowering fraud loss, arbitrations and
   enforcement costs, and other transaction costs. - "The Idea of Smart Contracts" by Nick Szabo
-  
+
+![trolley](trolley.jpg)
+
+A good analogy of how a Smart Contract work is like using a coin to rent a trolley. You stake something of value (a coin) and get it back until certain condition is fulfilled (you return the trolley). Think of how we could have done this by just employing a person to take down details of the renter and watch out for them when they leave the shop and making sure they return the trolley.
+
 This course wouldn't be complete wouldn't talking about Bitcoin Script.
 
 Bitcoin comes with a [non-turing complete](https://simple.wikipedia.org/wiki/Turing_complete) Smart Contract capability which gives Bitcoin [basic Bitcoin Scripting](https://en.bitcoin.it/wiki/Script) capabilities to create simple [DAPPS](https://www.coindesk.com/information/what-is-a-decentralized-application-dapp/). Decentralised apps is commonly known as Web 3.0 and will become very powerful when combined with AI. 
 
 People are usually unaware, but sending funds from one person to another in Bitcoin usually requires some scripting. One such popular script is called [P2PKH](https://bitcoin.org/en/glossary/p2pkh-address)
 
-P2PKH is a simple Bitcoin script and a Smart Contract. The rule is that the receiver is allowed to spend the funds only if they can proof their ownership of the funds creating a signature with their private key.
+P2PKH is a simple Bitcoin script and a Smart Contract. The rule is that the receiver is allowed to spend the funds only if they can proof their ownership of the funds creating a signature with their private key. In the previous chapters, we have done this in the createTransaction api. To do it professionally, it needs to be in the mycoin protocol.
 
 ## Stack Machine
 
@@ -38,7 +42,7 @@ In RPN,
 
 ## P2PKH (Pay to Public Key Hash)
 
-![UTXO Model](p2pkh.svg)
+![UTXO Model](p2pkh.png)
 *Image Credit: bitcoin.org*
 
 There are 2 parts to a real Bitcoin transaction:
@@ -74,9 +78,12 @@ Let's say the sender is Alice and the Receiver is Bob.
 * OP_VERIFY checks the value at the top of the stack. If false, script is terminated. If true, it pops the true off the stack.
 * OP_CHECKSIG now checks the Pubkey, all data required to be signed and the signature comes from the same person.
 
+Refer to this [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef)
+
+
 ## Making MyCoin Smart
 
-In our course, we also want to add some simple scripting capabilities to our coin but not as stack machine like the Bitcoin Script. Let's just say we want to allow the data field to be smart, ie we want the transaction output to be able to execute mycoin javascript. Mycoin script is basically just javascript wrapped in the mycoin tag
+In our course, we also want to add some simple scripting capabilities to our coin but not like the Bitcoin Script. Let's just say we want to allow the data field to be smart, ie we want the transaction output to be able to execute mycoin script. Mycoin script is basically just javascript wrapped in the mycoin tag
 
 ```
 in src/chapter_06/Blockchain.js
@@ -120,7 +127,7 @@ in src/chapter_06/Blockchain.js
 ...
 ```
 
-What if you run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
+Q1. In the mineBlock function, what if you run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
 
 With mycoin scripting supported, we have godly powers. Let's just say everyone agrees that the miner is getting too much reward. We want to overwrite the system and reduce his their reward from 12.5 to 0.2. We can inject the following script in the data field.
 
