@@ -11,7 +11,7 @@ A peer-to-peer (P2P) network is a network in which interconnected nodes ("peers"
 * Distributed System - Distribute part of the resource to other nodes in the network but could still be centrally controlled with points of failure.
 
 * Decentralised System - Every node is fully redundant with no points of failure.
- 
+
 ## Creating a Simple P2P System with WebSocket
 
 [WebSockets](https://en.wikipedia.org/wiki/WebSocket) allow a long-held single TCP socket connection to be established between the client and server which allows for bi-directional, full duplex, messages to be instantly distributed with little overhead resulting in a very low latency connection.
@@ -27,6 +27,30 @@ Let us assume that we have 3 nodes in our decentralised system.
 The connected nodes gossip with each other to transfer data. If the ledger in Node 3 is updated, the data will be broadcasted to Node 2 and eventually to Node 1.
 
 We will be using this simple network throughout all the chapters of the course.
+
+## Installation
+
+Download the code
+
+```
+https://github.com/bernardpeh/Create-Your-Own-Blockchain-From-Scratch/archive/master.zip
+```
+
+Extract the zip file to your home dir and rename the folder as mycoin.
+
+Opening up a terminal and in the mycoin folder, install all node packages
+
+```
+npm install
+```
+
+Note: For windows users, you might also need
+
+```
+npm install --save-dev cross-env
+```
+
+In your IDE, open up mycoin/src folder,
 
 The code for the simple websocket server with the api endpoint will be as follows:
 
@@ -94,7 +118,9 @@ initPeers(initialPeers)
 
 ## Testing
 
-Open up 3 terminals, Lets assign terminal 1 to node 1 and vice versa.
+open up 4 terminal (cmd in windows).
+
+Lets assign terminal 1 to node 1 and vice versa.
 
 In Terminal 1, start the node
 
@@ -132,7 +158,9 @@ There might be many unanswered questions at this stage. Things will be clearer w
 
 ## Exercises
 
-Q1. Would you use decentralised or centralised systems for the following use cases and why?
+Q1. How is cost, transaction speed and decentralisation related?
+
+Q2. Would you use decentralised or centralised systems for the following use cases and why?
 
 * Creation of a national identity system for its citizens.
 * A parcel tracking system for company xyz
@@ -140,8 +168,6 @@ Q1. Would you use decentralised or centralised systems for the following use cas
 * Voting for the next government.
 * Record the transaction history of lotus miles (points) of vietnam airlines.
  
-Q2. How is cost, transaction speed and decentralisation related?
-
 Q3. Is Bitcoin fully decentralised? How do you know?
 
 ## Resources 

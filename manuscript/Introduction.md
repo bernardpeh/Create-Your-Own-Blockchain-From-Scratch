@@ -51,9 +51,10 @@ Put all your knowledge about the Blockchain and Cryptocurrency into code and giv
 ## Course Pre-requisites
 
 * A modern day computer or laptop
+* Ubuntu or Mac OS
 * Internet connection
 * NodeJS installed
-* VS Code IDE installed
+* IDE (VS Code or Sublime Text) installed
 * Javascript programming language
 * Comfortable with using the Command Line
 * Basic knowledge of Blockchain and Cryptocurrency

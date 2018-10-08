@@ -250,7 +250,11 @@ initPeers(initialPeers)
 
 We broadcast to different nodes when new transactions and blocks are added. In this way, all the nodes are synced. Querying any nodes will return the same results.
 
+Q5. Is it possible that 2 miners find a block at the same time? What happens then?
+
 ## Testing
+
+We are now going to create a transaction, add it to a block and verify that all the chain are in sync.
 
 Open up 3 terminals, Lets assign terminal 1 to node 1 and vice versa.
 
@@ -278,7 +282,7 @@ In Terminal 4,
 # Lets add a tx to node 3.
 curl -H "Content-type:application/json" --data '{"fromAddress" : "alice", "toAddress" : "bob", "value" : 40}' http://localhost:3003/createTransaction
 
-# create a block in node 3.
+# create a block in node 3. Check what happens in all the terminals.
 curl http://localhost:3003/createBlock
 
 # check the chain in all the nodes. They should be the same
@@ -286,12 +290,12 @@ curl http://localhost:3003/getBlockchain
 curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 
-# get the balance of alice and bob from node 1.
+# get the balance of alice and bob from node 1. What values did you get?
 curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
 ```
 
-Q5. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
+Q6. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
 
 ## Resources
 
