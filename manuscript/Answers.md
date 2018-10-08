@@ -12,9 +12,13 @@ Q1. How many ways are there to create a new cryptocurrency?
 
 ## Chapter 1
 
-Q1. Would you use decentralised or centralised systems for the following use cases and why?
+Q1. How is cost, transaction speed and decentralisation related?
 
-* Creation of a national identity system for its citizens.
+Choose 2 out of 3. A fully centralised system is the cheapest and fastest. On the other hand, a fully decentralised system is either very costly or very slow.
+
+Q2. Would you use decentralised or centralised systems for the following use cases and why?
+
+* Decentralisation is slow and expensive. Creation of a national identity system for its citizens.
 
 Ans: Centralised. No need for transparency unless countries need to share data.
 
@@ -33,10 +37,6 @@ Ans: Decentralised
 * Record the transaction history of lotus miles (points) of vietnam airlines.
 
 Ans: Centralised.
-
-Q2. How is cost, transaction speed and decentralisation related?
-
-Choose 2 out of 3. A fully centralised system is the cheapest and fastest. On the other hand, a fully decentralised system is either very costly or very slow.
 
 Q3. Is Bitcoin fully decentralised? How do you know?
 
@@ -60,9 +60,16 @@ Ans: Because we can only pack that much of tx in each block so we need to do it 
 
 Q4. What is the problem with the getAddressBalance function?
 
-balance can be negative. what if trans.value is negative? What if there is an integer overflow? It doesn't mean we should implement the fix in this function, but its something we have to consider.
+* balance can be negative. 
+* what if trans.value is negative? 
+* What if there is an integer overflow? It doesn't mean we should implement the fix in this function, but its something we have to consider.
+* The sender and receiver can be the same address
 
-Q5. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
+Q5. Is it possible that 2 miners find a block at the same time? What happens then?
+
+We have a fork and a possibility of double spending if you accept 1 block confirmation only. The first miner that finds the next block will use its history as the source of truth.
+
+Q6. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
 
 Ans: Add a check before we create the transaction.
 
