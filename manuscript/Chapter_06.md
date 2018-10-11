@@ -63,7 +63,7 @@ where Sig is the signature of the target user and Pubkey is the public key of th
 
 Let's say the sender is Alice and the Receiver is Bob.
 
-* Bob's sig is added to the stack first, meaning its at the lowest.
+* Bob's sig is pushed to the stack first, meaning its at the lowest.
 * Bob's public key added next.
 * The op code OP_DUP duplicates the public key.
 * OP_HASH160 does a [ripmd160](https://en.wikipedia.org/wiki/RIPEMD) on the top public key.
@@ -190,6 +190,16 @@ curl http://localhost:3001/getBlockchain
 Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any problems with this upgrade?
 
 Tip: Remember to commit your code before moving on to the next chapter.
+
+## Short QUiz
+
+Q1. In stack programming, What is the following `2 2 2 2` returns?
+
+* 2
+* 4
+* 6
+* 8
+* 2222
 
 ## Resources
   

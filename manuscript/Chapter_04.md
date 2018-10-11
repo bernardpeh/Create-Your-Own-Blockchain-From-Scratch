@@ -187,6 +187,16 @@ curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734
 
 Tip: Remember to commit your code before moving on to the next chapter.
 
+## Short QUiz
+
+Q1. Which of the following option is the best way to protect your private keys?
+
+* Write your key down on a piece of paper.
+* Store your key in an encrypted disk.
+* Use third party password protection service or software to store your key.
+* Try to remember your key in your mind forever.
+* Split your key into chunks and give them to different people for safe keeping.
+
 ## Resources
 
 * [Bitcoin Addresses](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses)

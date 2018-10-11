@@ -62,7 +62,7 @@ module.exports = Transaction;
 
 Each Transaction records who is sending how much to who. This is a simple Account Based Transaction Model that scans through the chain to get the balance.
 
-Q2. Can you see a problem with this class?
+Q2. Do you see a problem with the Transaction class?
 
 ## The Chain
 
@@ -135,9 +135,9 @@ The actual implementation of the chain is quite simple. Its basically an increme
 
 Q3. Why is there a need for pendingTransactions?
 
-Q4. What is the problem with the getAddressBalance function?
+Q4. What is the problem with the getAddressBalance function in the Blockchain class?
 
-It time to add 4 more api endpoints to main.js, ie createTransaction, createBlock, getBlockchain and getBalance.
+Its time to add 4 more api endpoints to main.js, ie createTransaction, createBlock, getBlockchain and getBalance.
 
 ```
 # mycode/main.js
@@ -250,8 +250,6 @@ initPeers(initialPeers)
 
 We broadcast to different nodes when new transactions and blocks are added. In this way, all the nodes are synced. Querying any nodes will return the same results.
 
-Q5. Is it possible that 2 miners find a block at the same time? What happens then?
-
 ## Testing
 
 We are now going to create a transaction, add it to a block and verify that all the chain are in sync.
@@ -295,9 +293,19 @@ curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
 ```
 
-Q6. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
+Q5. Did you see any problems with alice sending 40 tokens to bob? How do we fix it? (ungraded)
 
 Tip: Remember to commit your code before moving on to the next chapter.
+
+## Short QUiz
+
+Q1. What happens when 2 miners find a block at the same time?
+
+* The Blockchain will use the chain of the miner that has the most nodes replicating its block.
+* The Blockchain will use the chain of the miner with the most number of transaction in its block, ie the heaviest chain.
+* The Blockchain will use the chain of the miner with the highest transaction fee in its block.
+* Nothing happens, the network continues to have 2 split chains.
+* None of the above.
 
 ## Resources
 

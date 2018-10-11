@@ -39,8 +39,6 @@ You have been tasked to create a proof of concept in NodeJS using the Bitcoin's 
 
 Put all your knowledge about the Blockchain and Cryptocurrency into code and give it a shot.
 
-Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
-
 ## Course Objectives
 
 * To give participants more confidence in how the Blockchain and Cryptocurrency works.
@@ -92,3 +90,10 @@ Note: For windows users, you might also need
 ```
 npm install --save-dev cross-env
 ```
+
+## Short QUiz
+
+Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
+
+* Copy the code of a current coin and tweak the parameters.
+* Create a Token Smart Contract on a platform that supports it.

@@ -17,8 +17,6 @@ In practice, the balance of an address in the account transaction model is store
 ![UTXO Model](utxo-model.jpg)
 *Image Credit: bitcoin.org*
 
-Q1. In a transaction, why is the sum of output always lesser than the sum of input?
-
 Let us update our Transaction class, replacing toAddress and fromAddress by txIn and txOut classes.
 
 ```
@@ -358,6 +356,21 @@ curl http://localhost:3001/getBlockchain
 ```
 
 Tip: Remember to commit your code before moving on to the next chapter.
+
+## Short Quiz
+
+Q1. In a Bitcoin transaction, why is the sum of output always lesser than the sum of input?
+
+* Because the input need to include the transaction fees
+* Because the output need to include the transaction fees
+* Because this is just the way it works in Bitcoin
+
+Q2. What happens if Alice uses 1 UTXO (30 mycoins) to send 1 mycoin to Bob and doesn't provide change address?
+
+* The miner gets Alice's 29 mycoins.
+* Alice UTXO is now updated to 29 mycoins.
+* Bob gets an extra 29 mycoins.
+* No one gets the 29 mycoins. Its lost forever.
 
 ## Resources
 

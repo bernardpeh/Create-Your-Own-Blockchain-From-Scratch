@@ -144,11 +144,14 @@ The more nodes we have, the slower and harder it is for the blocks to propagate.
 
 There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
-## Exercises
+## Short Quiz
 
-Q1. How is cost, transaction speed and decentralisation related?
+Q1. A Distributed Ledger can be very decentralised, cheap to use and fast.
 
-Q2. Would you use decentralised or centralised systems for the following use cases and why?
+* True
+* False
+
+Q2. Would you use decentralised or centralised systems for the following use cases and why? (ungraded)
 
 * Creation of a national identity system for its citizens.
 * A parcel tracking system for company xyz.
@@ -156,7 +159,10 @@ Q2. Would you use decentralised or centralised systems for the following use cas
 * Voting for the next government.
 * Record the transaction history of lotus miles (points) of vietnam airlines.
  
-Q3. Is Bitcoin fully decentralised? How do you know?
+Q3. Bitcoin is centralised because the core developers have full control over the source code.
+
+* True
+* False
 
 ## Resources 
 
