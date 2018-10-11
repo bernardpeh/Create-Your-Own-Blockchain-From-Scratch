@@ -189,9 +189,12 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short QUiz
 
-Q1. Why are we hardcoding a 1535766955 as timestamp when creating the genesis block? 
+{quiz, id: chapter_03, attempts: 99}
 
-* Because its the standard for genesis block creation.
-* Because it has certain meaning in Bitcoin.
-* Because we want a predictable block hash.
+? Why are we hardcoding a 1535766955 as timestamp when creating the genesis block? 
 
+a) Because its the standard for genesis block creation.
+b) Because it has certain meaning in Bitcoin.
+C) Because we want a predictable block hash.
+
+{/quiz}

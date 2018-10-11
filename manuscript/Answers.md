@@ -305,7 +305,7 @@ Ans: Before a block is mined, we can check that the smart contract is doing the 
 
 Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any problems with this upgrade?
 
-Ans: No matter how fantastic this upgrade is, in a fully decentralised network, all machines have the rights not to upgrade. In that case, you are left with a fork, ie a split chain which is highly undesirable. Look at what happened to Ethereum Classic and Ethereum due to the DAO Fork. This is a much more serious issue to consider in a public rather than a private chain.
+Ans: No matter how fantastic this upgrade is, in a fully decentralised network, all machines have the rights not to upgrade. In that case, you are left with a fork, ie a split chain which is highly undesirable. Look at what happened to Ethereum Classic and Ethereum due to the [DAO Fork](https://www.coindesk.com/ethereum-executes-blockchain-hard-fork-return-dao-investor-funds/). This is a much more serious issue to consider in a public rather than a private chain.
 
 Short Quiz Q1. In stack programming, What is the following `2 2 2 2` returns?
 

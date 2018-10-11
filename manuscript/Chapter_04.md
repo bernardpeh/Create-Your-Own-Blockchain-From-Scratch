@@ -187,15 +187,19 @@ curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734
 
 Tip: Remember to commit your code before moving on to the next chapter.
 
-## Short QUiz
+## Short Quiz
 
-Q1. Which of the following option is the best way to protect your private keys?
+{quiz, id: chapter_04, attempts: 99}
 
-* Write your key down on a piece of paper.
-* Store your key in an encrypted disk.
-* Use third party password protection service or software to store your key.
-* Try to remember your key in your mind forever.
-* Split your key into chunks and give them to different people for safe keeping.
+? Which of the following option is the best way to protect your private keys?
+
+A) Split your key into chunks and give them to different people for safe keeping.
+b) Store your key in an encrypted disk.
+c) Use third party password protection service or software to store your key.
+d) Try to remember your key in your mind forever.
+e) Write your key down on a piece of paper.
+
+{/quiz}
 
 ## Resources
 

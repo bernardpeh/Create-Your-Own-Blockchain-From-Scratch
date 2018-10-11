@@ -299,13 +299,17 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short QUiz
 
-Q1. What happens when 2 miners find a block at the same time?
+{quiz, id: chapter_02, attempts: 99}
 
-* The Blockchain will use the chain of the miner that has the most nodes replicating its block.
-* The Blockchain will use the chain of the miner with the most number of transaction in its block, ie the heaviest chain.
-* The Blockchain will use the chain of the miner with the highest transaction fee in its block.
-* Nothing happens, the network continues to have 2 split chains.
-* None of the above.
+? What happens when 2 miners find a block at the same time?
+
+a) The Blockchain will use the chain of the miner that has the most nodes replicating its block.
+b) The Blockchain will use the chain of the miner with the most number of transaction in its block, ie the heaviest chain.
+c) The Blockchain will use the chain of the miner with the highest transaction fee in its block.
+D) Nothing happens, the network continues to have 2 split chains.
+e) None of the above.
+
+{/quiz}
 
 ## Resources
 

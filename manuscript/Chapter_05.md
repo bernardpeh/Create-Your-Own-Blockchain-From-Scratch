@@ -359,18 +359,22 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-Q1. In a Bitcoin transaction, why is the sum of output always lesser than the sum of input?
+{quiz, id: chapter_05, attempts: 99}
 
-* Because the input need to include the transaction fees
-* Because the output need to include the transaction fees
-* Because this is just the way it works in Bitcoin
+? In a Bitcoin transaction, why is the sum of output always lesser than the sum of input?
 
-Q2. What happens if Alice uses 1 UTXO (30 mycoins) to send 1 mycoin to Bob and doesn't provide change address?
+a) Because the input need to include the transaction fees
+B) Because the output need to include the transaction fees
+c) Because this is just the way it works in Bitcoin
 
-* The miner gets Alice's 29 mycoins.
-* Alice UTXO is now updated to 29 mycoins.
-* Bob gets an extra 29 mycoins.
-* No one gets the 29 mycoins. Its lost forever.
+? What happens if Alice uses 1 UTXO (30 mycoins) to send 1 mycoin to Bob and doesn't provide change address?
+
+A) The miner gets Alice's 29 mycoins.
+b) Alice UTXO is now updated to 29 mycoins.
+c) Bob gets an extra 29 mycoins.
+d) No one gets the 29 mycoins. Its lost forever.
+
+{/quiz}
 
 ## Resources
 

@@ -144,25 +144,31 @@ The more nodes we have, the slower and harder it is for the blocks to propagate.
 
 There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
-## Short Quiz
+## Food for Thought
 
-Q1. A Distributed Ledger can be very decentralised, cheap to use and fast.
-
-* True
-* False
-
-Q2. Would you use decentralised or centralised systems for the following use cases and why? (ungraded)
+Would you use decentralised or centralised systems for the following use cases and why? (ungraded)
 
 * Creation of a national identity system for its citizens.
 * A parcel tracking system for company xyz.
 * Tracking of rice production between Vietnam and Australia.
 * Voting for the next government.
 * Record the transaction history of lotus miles (points) of vietnam airlines.
- 
-Q3. Bitcoin is centralised because the core developers have full control over the source code.
 
-* True
-* False
+## Short Quiz
+
+{quiz, id: chapter_01, attempts: 99}
+
+? A Distributed Ledger can be very decentralised, cheap to use and fast.
+
+a) True
+B) False
+
+? Bitcoin is centralised because the core developers have full control over the source code.
+
+a) True
+B) False
+
+{/quiz}
 
 ## Resources 
 

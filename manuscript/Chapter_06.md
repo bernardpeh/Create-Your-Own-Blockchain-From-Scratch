@@ -193,13 +193,17 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short QUiz
 
-Q1. In stack programming, What is the following `2 2 2 2` returns?
+{quiz, id: chapter_06, attempts: 99}
 
-* 2
-* 4
-* 6
-* 8
-* 2222
+? In stack programming, What is the following `2 2 2 2` returns?
+
+A) 2
+b) 4
+c) 6
+d) 8
+e) 2222
+
+{/quiz}
 
 ## Resources
   

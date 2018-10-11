@@ -93,7 +93,12 @@ npm install --save-dev cross-env
 
 ## Short QUiz
 
-Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
+{quiz, id: introduction, attempts: 99}
 
-* Copy the code of a current coin and tweak the parameters.
-* Create a Token Smart Contract on a platform that supports it.
+? What are the legitimate ways to create a new cryptocurrency other than creating one from scratch?
+
+a) Copy the code of a current coin and tweak the parameters.
+b) Create a Token Smart Contract on a platform that supports it.
+C) All of the above.
+
+{/quiz}
