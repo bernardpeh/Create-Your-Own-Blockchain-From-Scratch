@@ -28,34 +28,10 @@ The connected nodes gossip with each other to transfer data. If the ledger in No
 
 We will be using this simple network throughout all the chapters of the course.
 
-## Installation
-
-Download the code
+In your IDE, copy and paste the sample websocket server code:
 
 ```
-https://github.com/bernardpeh/Create-Your-Own-Blockchain-From-Scratch/archive/master.zip
-```
-
-Extract the zip file to your home dir and rename the folder as mycoin.
-
-Opening up a terminal and in the mycoin folder, install all node packages
-
-```
-npm install
-```
-
-Note: For windows users, you might also need
-
-```
-npm install --save-dev cross-env
-```
-
-In your IDE, open up mycoin/src folder,
-
-The code for the simple websocket server with the api endpoint will be as follows:
-
-```
-# src/chapter_01/main.js
+# mycode/main.js
 
 var express = require("express")
 var bodyParser = require('body-parser')
@@ -118,29 +94,29 @@ initPeers(initialPeers)
 
 ## Testing
 
-open up 4 terminal (cmd in windows).
+open up 4 terminals. In the *directory root* of all the windows
 
 Lets assign terminal 1 to node 1 and vice versa.
 
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_01/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_01/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_01/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js
 ```
 
-Open another Terminal. Let's call this terminal 4 and make a simple curl call to Node 3.
+Open the last Terminal. Let's call this terminal 4 and make a simple curl call to Node 3.
 
 ```
 curl http://localhost:3003/ping
@@ -148,11 +124,21 @@ curl http://localhost:3003/ping
 
 Now check terminal 1,2 and 3. Do they all display the same message? If yes, all the nodes are synchronised. Congratulations, you have created a very simple P2P network.
 
+Note: If you get stuck for example, you can test out the source code from the src dir instead to see direct results, ie
+
+```
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_01/main.js
+```
+
+Tip: Remember to commit your code before moving on to the next chapter.
+
 ## Using Currencies in P2P network 
 
-Unlike making digital copies of a file, using P2P network to replicate **real time** digital transactions means that all the nodes have to be synchronised with each other in order to prevent double spending. There needs to be rules to group different transactions into batches for synchronisation. 
+Unlike making digital copies of a file, using P2P network to replicate **real time** digital transactions means that all the nodes have to be synchronised with each other. **At the same time, the consensus makes sure that no one can erase or modify the transaction history and [double spend](https://en.wikipedia.org/wiki/Double-spending) the funds.**
 
-The more nodes we have, the slower and harder it is for the batches of transactions to propagate. Most importantly, the network should be resilient to bad actors who propagate false transactional data. The network needs to be "smart" to know which batches of transaction are legitimate and which is not. 
+Synchronising all the nodes is rocket science. There needs to be rules to group different transactions into blocks (batches) in order for synchronisation to work.
+
+The more nodes we have, the slower and harder it is for the blocks to propagate. Most importantly, the network should be resilient to bad actors who propagate false transactional data. The network needs to be "smart" to know which blocks are legitimate and which is not. 
 
 There might be many unanswered questions at this stage. Things will be clearer when we will revisit this issue at chapter 3.
 
@@ -163,7 +149,7 @@ Q1. How is cost, transaction speed and decentralisation related?
 Q2. Would you use decentralised or centralised systems for the following use cases and why?
 
 * Creation of a national identity system for its citizens.
-* A parcel tracking system for company xyz
+* A parcel tracking system for company xyz.
 * Tracking of rice production between Vietnam and Australia.
 * Voting for the next government.
 * Record the transaction history of lotus miles (points) of vietnam airlines.

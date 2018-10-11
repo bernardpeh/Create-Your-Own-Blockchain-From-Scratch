@@ -58,7 +58,6 @@ var initHttpServer = () => {
         let requiredUTXOValue = 0
         // lets spend the the UTXO by signing them. What is wrong with this?
         for(let requireUTXO of requiredUTXOs) {
-            // why is this a bad practice?
             let sig = wallet.sign(requireUTXO.txOutHash, req.body.privKey)
             if (wallet.verifySignature(requireUTXO.txOutHash, sig, req.body.fromAddress)) {
                 let txIn = new TxIn(requireUTXO.txOutHash, requireUTXO.txOutIndex, sig)

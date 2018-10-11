@@ -10,13 +10,14 @@
 The cryptocurrency addresses that we have been using, ie alice, bob and miner were just examples. In the crypto world, each address is mathematically related to the public key. In our course, let's just assume each address is the public key for the sake of simplicity.
 
 ![pki](pki.png)
+*Image credit: Wikipedia*
 
 Before an amount can be spend from an account, the user needs to sign the transaction with his private key. Since the public key and transaction details are known, each nodes can verify that the owner is indeed the rightful owner of the account.
 
 Instead of using the addresses "Alice" and "Bob", let us create a proper wallet for each one of them.
 
 ```
-src/chapter_04/Wallet.js
+# mycode/Wallet.js
 
 // Note that the wallet does not need to be connected to the Blockchain.
 const EC = require('elliptic').ec
@@ -62,8 +63,10 @@ module.exports = Wallet;
 
 [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) is a type of elliptic curve cryptography used by Bitcoin. We will be using it to generate the public and private key pair. 
 
+Let us test it out.
+
 ```
-# src/chapter_04/CreateAddress.js
+# mycode/CreateAddress.js
 
 const wallet = require('./Wallet')
 
@@ -75,13 +78,13 @@ console.log('private key '+w.getPrivateKey())
 Lets run it.
 
 ```
-node src/chapter_04/CreateAddress.js
+node mycode/CreateAddress.js
 
 public key 04dc6d9a118abb5c26961e6f814d6f61218adee9ced518de231ce63587f9...
 private key c64bf4124a706e8e1d2679d2d37919d223abd76b8b0ec435b28b1447a200...
 ```
 
-Q1. Why is Bitcoin address much shorter than the public key we generated?
+Q1. Why is Bitcoin address(eg 367f4YWz1VCFaqBqwbTrzwi2b1h2U3w1AF) much shorter than the public key we generated?
 
 The randomness in the algorithm ensures that you get different public and private keys everytime you run it. So let us use the following keys:
 
@@ -113,7 +116,7 @@ Q3. Where would you make changes in the code to pre-mine some mycoin to alice? P
 Every interacting objects in the Blockchain should be referenced by a hash. Let us upgrade our Transaction class.
 
 ```
-# src/chapter_04/Transaction.js
+# mycode/Transaction.js
 
 const CryptoJs= require("crypto-js")
 
@@ -145,28 +148,29 @@ Its time to simulate the scenario.
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_04/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_04/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js 
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_04/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js 
 ```
 
 In Terminal 4, 
 
 ```
-# Lets add a tx to node 3.
+# Lets add a tx to node 3. Why did sending 40 mycoins fail?
 curl -H "Content-type:application/json" --data '{"fromAddress" : "04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress" : "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value" : 40, "privKey" : "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
 
-curl -H "Content-type:application/json" --data '{"fromAddress" : "04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress" : "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value" : 30, "privKey" : "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
+# Lets try again with 10 mycoins
+curl -H "Content-type:application/json" --data '{"fromAddress" : "04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress" : "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value" : 10, "privKey" : "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
 
 curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2"}' http://localhost:3003/mineBlock
 
@@ -183,6 +187,8 @@ curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a
 # bob
 curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75
 ```
+
+Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Resources
 

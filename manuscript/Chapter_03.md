@@ -15,7 +15,7 @@ In Bitcoin, the right hash is one with a specific number of zeros prefixing it. 
 Q1. Write a mineBlock function that accepts a difficulty parameter in the Block class. this.hash must also be guaranteed unique.
 
 ```
-# src/chapter_03/Block.js
+# mycode/Block.js
 
 const CryptoJs= require("crypto-js");
 
@@ -32,7 +32,6 @@ class Block {
     }
 
     mineBlock(difficulty) {
-        ...
     }
 }
 
@@ -52,7 +51,7 @@ It is also important to note that due to the limited supply and price of Bitcoin
 Q2. In Blockchain.js, add a mineBlock function that accepts a minerAddress argument. Add a new transaction before all other pending transactions. This is the coinbase transaction to reward the miner only.
 
 ```
-# src/chapter_03/Blockchain.js
+# mycode/Blockchain.js
 
 const Block = require('./Block');
 const Transaction = require('./Transaction')
@@ -60,8 +59,7 @@ const Transaction = require('./Transaction')
 class Blockchain{
 
     constructor() {
-        this.chain = [this.createGenesisBlock()]
-        this.pendingTransactions = []
+        ...
         this.difficulty = 1
         this.miningReward = 1
     }
@@ -82,7 +80,6 @@ class Blockchain{
     }
     
     mineBlock(minerAddress) {
-        ...
     }
     ...
 }
@@ -90,9 +87,15 @@ class Blockchain{
 module.exports = Blockchain;
 ```
 
-Next, let us change the api endpoint in main.js from createBlock to mineBlock,
+Next, let us set the mining difficulty, reward and change the api endpoint in main.js from createBlock to mineBlock,
 
 ```
+# mycode/main.js
+
+...
+const CryptoJs= require("crypto-js")
+...
+
 // create mycoin blockchain
 let mycoin = new Blockchain();
 // Set the difficulty based on your CPU speed
@@ -104,7 +107,7 @@ var initHttpServer = () => {
     ...
     app.post('/mineBlock', (req, res) => {
         if (mycoin.pendingTransactions.length > 0) {
-            mycoin.mineBlock(req.body.minerAddress)
+            let block = mycoin.mineBlock(req.body.minerAddress)
             console.log(JSON.stringify(block))
             broadcast(block)
             res.send('new Block created: '+JSON.stringify(block))
@@ -147,35 +150,38 @@ In mineBlock api, we make sure we provide the miner Address. Once a block is pro
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_03/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_03/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js 
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_03/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js 
 ```
 
 In Terminal 4, 
 
 ```
-# Lets add a tx to node 3.
+# Lets add a tx to node 3. Is the mining successful? Why?
 curl -H "Content-type:application/json" --data '{"fromAddress" : "alice", "toAddress" : "bob", "value" : 40}' http://localhost:3003/createTransaction
 
-curl -H "Content-type:application/json" --data '{"minerAddress":"0xDavid"}' http://localhost:3003/mineBlock
+curl -H "Content-type:application/json" --data '{"minerAddress":"miner"}' http://localhost:3003/mineBlock
 
 # check the chain in all the nodes. They should be the same
 curl http://localhost:3003/getBlockchain
 curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 
-# get the balance of alice and bob from node 1.
+# get the balance of alice, bob and miner from node 1.
 curl http://localhost:3001/getBalance/alice
 curl http://localhost:3001/getBalance/bob
+curl http://localhost:3001/getBalance/miner
 ```
+
+Tip: Remember to commit your code before moving on to the next chapter.

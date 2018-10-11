@@ -2,7 +2,7 @@
 
 > A timestamp server works by taking a hash of a block of items to be timestamped and widely publishing the hash, such as in a newspaper or Usenet post. The timestamp proves that the data must have existed at the time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in its hash, forming a chain, with each additional timestamp reinforcing the ones before it. - Bitcoin's Whitepaper
 
-The Blockchain is simply a chain of blocks. In the technical term, it is an insert only database. The ecosystem ensures that the data in the Blockchain cannot be changed and hence protect against double spending when used as a currency.
+The Blockchain is simply a chain of blocks. In the technical term, it is an insert only database. The ecosystem ensures that the data in the Blockchain cannot be changed and hence protect against [double spending](https://en.wikipedia.org/wiki/Double-spending) when used as a currency.
 
 Each block consists of transactions and the miner (node) is responsible to assemble all the transactions in the block.
 
@@ -16,7 +16,7 @@ Each transaction is hashed and then paired repeatedly until the last single hash
 Let us first create a simple block.
 
 ```
-# src/chapter_02/Block.js
+# mycode/Block.js
 
 const CryptoJs= require("crypto-js");
 
@@ -46,7 +46,7 @@ Q1. What is the unique identifier in the Block? How do we ensure that its unique
 Now lets create a simple Transaction object.
 
 ```
-# src/chapter_02/Transaction.js
+# mycode/Transaction.js
 
 class Transaction{
     constructor(fromAddress, toAddress, amount, data=''){
@@ -69,7 +69,7 @@ Q2. Can you see a problem with this class?
 Now, the actual Blockchain class.
 
 ```
-# src/chapter_02/Blockchain.js
+# mycode/Blockchain.js
 
 const Block = require('./Block');
 
@@ -140,7 +140,7 @@ Q4. What is the problem with the getAddressBalance function?
 It time to add 4 more api endpoints to main.js, ie createTransaction, createBlock, getBlockchain and getBalance.
 
 ```
-# src/chapter_02/main.js
+# mycode/main.js
 
 var express = require("express")
 var bodyParser = require('body-parser')
@@ -261,19 +261,19 @@ Open up 3 terminals, Lets assign terminal 1 to node 1 and vice versa.
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_02/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_02/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js 
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_02/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js 
 ```
 
 In Terminal 4, 
@@ -296,6 +296,8 @@ curl http://localhost:3001/getBalance/bob
 ```
 
 Q6. Did you see any problems with alice sending 40 tokens to bob? How do we fix it?
+
+Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Resources
 

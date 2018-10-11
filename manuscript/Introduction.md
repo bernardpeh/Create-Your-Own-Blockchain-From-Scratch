@@ -27,19 +27,19 @@ The best way to learn about Blockchain is to learn how Bitcoin works since it is
 
 This course is an **intensive deep dive into the building blocks** of the Blockchain and how Bitcoin works. It is ideally conducted as a workshop in a computer lab where every participant can listen and code at the same time. **The course duration is estimated to be 15 hrs, consisting of 30% theory and 70% practical**.
 
-In every chapter, the theory will consists of going through some basic concepts with Questions and Answer sessions. Sample code will be provided. Participants are strongly advised to answer the questions and run the code in their own environment to see how things work.
+In every chapter, the theory will consists of going through some basic concepts with Questions and Answer sessions. Sample code will be provided. Participants are strongly advised to answer the questions and run the code in a separate branch in their own environment to see how things work.
  
-If participants get stuck, they can checkout the answers from various chapters under the src dir so as to keep the course moving. This is a hands-on course. The best way to learn is to experiment it and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
+If participants get stuck, *they can use the source code from various chapters under the src dir* so as to keep the course moving. This is a hands-on course. The best way to learn is to experiment it and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
 
 ## The Challenge
 
 In the year 2022, your company decided to pay all employees using the company's own Cryptocurrency called "mycoin".
 
-Q1. How many ways are there to create a new cryptocurrency?
-
 You have been tasked to create a proof of concept in NodeJS using the Bitcoin's model. You are not to take shortcuts but instead create one from scratch. It doesn't have to be 100% working. You just need to focus on proofing the concept rather worrying about the syntax.
 
 Put all your knowledge about the Blockchain and Cryptocurrency into code and give it a shot.
+
+Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
 
 ## Course Objectives
 
@@ -47,11 +47,11 @@ Put all your knowledge about the Blockchain and Cryptocurrency into code and giv
 * To inspire participants to pursue further knowledge in Blockchain Technologies.
 * To give participants strong foundation to take on more complex Ethereum and Hyperledger development projects.
 
-
 ## Course Pre-requisites
 
 * A modern day computer or laptop
 * Ubuntu or Mac OS
+* Git account signed up and Git installed locally
 * Internet connection
 * NodeJS installed
 * IDE (VS Code or Sublime Text) installed
@@ -61,3 +61,34 @@ Put all your knowledge about the Blockchain and Cryptocurrency into code and giv
 * An open mind and a passion to learn
 
 **Disclaimer: DO NOT copy the code in this course wholesale without know what it does.**
+
+## Installation
+
+Clone the repo in your home dir:
+
+```
+git clone git@github.com:bernardpeh/Create-Your-Own-Blockchain-From-Scratch.git
+```
+
+Opening up a terminal and in the mycoin folder, install all node packages and initialise our workspace
+
+```
+cd Create-Your-Own-Blockchain-From-Scratch
+npm install
+
+# Let us create a new branch from the master branch so we can commit to it
+git checkout -b mycode
+# mycode dir is the place where we will create our code
+mkdir mycode
+touch mycode/.gitkeep
+git add mycode
+git commit -m"init"
+```
+
+Our environment is now set.
+
+Note: For windows users, you might also need
+
+```
+npm install --save-dev cross-env
+```

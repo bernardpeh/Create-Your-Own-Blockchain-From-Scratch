@@ -187,6 +187,8 @@ curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 ```
 
+Tip: Remember to commit your code before moving on to the next chapter.
+
 ## Resources
   
   * [Bitcoin Script](https://bitcoin.org/en/developer-guide#transactions)

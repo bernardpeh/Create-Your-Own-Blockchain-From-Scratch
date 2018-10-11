@@ -12,7 +12,7 @@ In practice, the balance of an address in the account transaction model is store
 
 * Every transaction must prove that the sum of its inputs are greater than the sum of its outputs. 
 * Every referenced input must be valid and not yet spent.
-* The transaction must have a signature matching the owner of the input for every input.
+* The transaction must have a signature matching the owner of the input.
 
 ![UTXO Model](utxo-model.jpg)
 *Image Credit: bitcoin.org*
@@ -217,7 +217,6 @@ const TxOut = require('./TxOut')
         let requiredUTXOValue = 0
         // lets spend the the UTXO by signing them. What is wrong with this?
         for(let requireUTXO of requiredUTXOs) {
-            // why is this a bad practice?
             let sig = wallet.sign(requireUTXO.txOutHash, req.body.privKey)
             if (wallet.verifySignature(requireUTXO.txOutHash, sig, req.body.fromAddress)) {
                 let txIn = new TxIn(requireUTXO.txOutHash, requireUTXO.txOutIndex, sig)
@@ -258,6 +257,40 @@ const TxOut = require('./TxOut')
         res.send(mycoin.getUTXO(req.params.address))
     });
 ...
+```
+
+Q3. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
+
+```
+// Get the UTXO and decide how many utxo to sign.
+let utxos = mycoin.getUTXO(req.body.fromAddress)
+let accumulatedUTXOVal = 0
+let requiredUTXOs = []
+for(const utxo of utxos) {
+    requiredUTXOs.push(utxo)
+    accumulatedUTXOVal += utxo.value
+    if (accumulatedUTXOVal - req.body.value > 0) {
+        break
+    }
+}
+```
+
+Q4. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
+
+```
+// lets spend the the UTXO by signing them. What is wrong with this?
+for(let requireUTXO of requiredUTXOs) {
+    let sig = wallet.sign(requireUTXO.txOutHash, req.body.privKey)
+    if (wallet.verifySignature(requireUTXO.txOutHash, sig, req.body.fromAddress)) {
+        let txIn = new TxIn(requireUTXO.txOutHash, requireUTXO.txOutIndex, sig)
+        requiredUTXOValue += requireUTXO.value
+        txIns.push(txIn)
+    }
+    else {
+        res.send('You are not the owner of the funds!')
+        return
+    }
+}
 ```
 
 ## Testing
@@ -304,7 +337,7 @@ curl http://localhost:3003/getUTXO/04c7facf88f8746f4388bcd1654a43afff83e5552a4b7
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
 # Alice send 31 coins to bob in Node 3. In terminal 4
-curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 11, "data": "i love TMA", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
+curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 11, "data": "i love BTC", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
 
 # Node 3 now mines a block. In terminal 4,
 curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2"}' http://localhost:3003/mineBlock
@@ -323,6 +356,8 @@ curl http://localhost:3003/getBlockchain
 curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 ```
+
+Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Resources
 

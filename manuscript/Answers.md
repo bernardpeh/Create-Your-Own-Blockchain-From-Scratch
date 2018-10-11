@@ -4,11 +4,10 @@
 
 ## Introduction
 
-Q1. How many ways are there to create a new cryptocurrency?
+Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
 
 * Fork a current coin and tweak the parameters (eg Bitcoin Cash, Bitcoin Diamond, Bitcoin Gold)
 * Create a Token Smart Contract on a platform that supports it. Eg, Ethereum, NEO, WAVES, EOS, NEM..etc  
-* Create a new Blockchain from scratch
 
 ## Chapter 1
 
@@ -63,7 +62,7 @@ Q4. What is the problem with the getAddressBalance function?
 * balance can be negative. 
 * what if trans.value is negative? 
 * What if there is an integer overflow? It doesn't mean we should implement the fix in this function, but its something we have to consider.
-* The sender and receiver can be the same address
+* The sender and receiver can be the same address.
 
 Q5. Is it possible that 2 miners find a block at the same time? What happens then?
 
@@ -126,20 +125,23 @@ Q2. In Blockchain.js, add a mineBlock function that accepts a minerAddress argum
         // coinbase transaction
         this.pendingTransactions.unshift(new Transaction(null, minerAddress, this.miningReward))
 
-        // create new block based on current timestamp, all pending tx and previous blockhash
-        let block = new Block(Date.now(), this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
+        // create new block based on hardcoded timestamp, all pending tx and previous blockhash
+        let block = new Block(1535766955, this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
         block.mineBlock(this.difficulty)
 
         this.chain.push(block)
         // reset pending Transactions
         this.pendingTransactions = []
+        return block
     }
     ...
 ```
 
+Why are we hardcoding a timestamp? Because we want to provide the same conditions for calculateHash() to find the next hash.
+
 ## Chapter 4
 
-Q1. Why is Bitcoin address much shorter than the public key we generated?
+Q1. Why is Bitcoin address(eg 367f4YWz1VCFaqBqwbTrzwi2b1h2U3w1AF) much shorter than the public key we generated?
 
 Because there are several hashing operations done on the public key, ie sha256 and ripemd160.
 
@@ -230,7 +232,7 @@ getAddressBalance(address){
 }
 ```
 
-Q3. What problems can you see with this code in the createTransaction API endpoint.
+Q3. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
 
 ```
 // Get the UTXO and decide how many utxo to sign.
@@ -246,12 +248,33 @@ for(const utxo of utxos) {
 }
 ```
 
-The sequence of utxo is important. Imagine you are sending 21 mycoin to someone, would you spend 1 output of 30 mycoin or 2 outputs of 10 and 20 mycoin? There is a big science on it - https://medium.com/@lopp/the-challenges-of-optimizing-unspent-output-selection-a3e5d05d13ef
+There is no problem with the code. Its worth noting that the sequence of utxo is important. Imagine you are sending 21 mycoin to someone, would you spend 1 output of 30 mycoin or 2 outputs of 10 and 20 mycoin? There is a big science on it - https://medium.com/@lopp/the-challenges-of-optimizing-unspent-output-selection-a3e5d05d13ef
 
 It could be really expensive to send large amount of small outputs. Think of the hassle of having large amount of 1 cent in your pocket. Bitcoin nodes will reject transactions that are larger than 100KB in size. The size of Bitcoin block is limited to 1 MB and you have to pay higher tx fees if there are lots of inputs and outputs.
+
+Q4. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
+
+```
+// lets spend the the UTXO by signing them. What is wrong with this?
+for(let requireUTXO of requiredUTXOs) {
+    // why is this a bad practice?
+    let sig = wallet.sign(requireUTXO.txOutHash, req.body.privKey)
+    if (wallet.verifySignature(requireUTXO.txOutHash, sig, req.body.fromAddress)) {
+        let txIn = new TxIn(requireUTXO.txOutHash, requireUTXO.txOutIndex, sig)
+        requiredUTXOValue += requireUTXO.value
+        txIns.push(txIn)
+    }
+    else {
+        res.send('You are not the owner of the funds!')
+        return
+    }
+}
+```
+
+You are exposing your private key in via curl. You lose your private key, you lose the world.
 
 ## Chapter 6
 
 Q1. In the mineBlock function, what if you run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
 
-Ans: Then the the nodes will not be in synced because the propagation will start before the smart contract executes.
+Ans: Before a block is mined, we can check that the smart contract is doing the right things and stop it if it doesn't. After a block is mined, it will be propagated straight away, even if the smart contract is legitimate, there might be a chance that your node and other nodes will not be in synced.

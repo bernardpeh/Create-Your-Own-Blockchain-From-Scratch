@@ -20,7 +20,7 @@ There are too many opportunities to be discussed. A few popular ones are listed 
 * Medical Records
 * Military
 * Interbank currency transfer
-* National Currency
+* multi-company points system
 
 ## Public Chains
 
