@@ -26,7 +26,9 @@ Let us assume that we have 3 nodes in our decentralised system.
 
 The connected nodes gossip with each other to transfer data. If the ledger in Node 3 is updated, the data will be broadcasted to Node 2 and eventually to Node 1.
 
-We will be using this simple network throughout all the chapters of the course.
+We will be using this simple network throughout all the chapters of the course. The simplicity of the network is also a limitation. It means that we have to start the nodes in sequential order.
+
+**The idea is to send HTTP request to node 3 and checking the results from Node 1. If decentralisation is working correctly, node 1 should return us the right results.**
 
 In your IDE, copy and paste the sample websocket server code:
 

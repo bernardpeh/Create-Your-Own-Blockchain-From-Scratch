@@ -12,7 +12,7 @@ In practice, the balance of an address in the account transaction model is store
 
 * Every transaction must prove that the sum of its inputs are greater than the sum of its outputs. 
 * Every referenced input must be valid and not yet spent.
-* The transaction must have a signature matching the owner of the input.
+* The transaction must produce a signature matching the owner of the input.
 
 ![UTXO Model](utxo-model.jpg)
 *Image Credit: bitcoin.org*
@@ -22,7 +22,7 @@ Q1. In a transaction, why is the sum of output always lesser than the sum of inp
 Let us update our Transaction class, replacing toAddress and fromAddress by txIn and txOut classes.
 
 ```
-# src/chapter_05/Transaction.js
+# mycode/Transaction.js
 
 const CryptoJs= require("crypto-js")
 
@@ -43,7 +43,7 @@ module.exports = Transaction;
 We also need to create the input class
 
 ```
-# src/chapter_05/TxIn.js
+# mycode/TxIn.js
 
 class TxIn {
 
@@ -60,7 +60,7 @@ module.exports = TxIn
 and output class
 
 ```
-# src/chapter_05/TxOut.js
+# mycode/TxOut.js
 
 class TxOut {
 
@@ -77,7 +77,7 @@ module.exports = TxOut
 To make life easy for us when getting the balance of all addresses, we create another new UTXO class.
 
 ```
-# src/chapter_05/UTXO.js
+# mycode/UTXO.js
 
 class UTXO {
 
@@ -95,16 +95,16 @@ module.exports = UTXO
 
 Before we move on, let us recap some basic concepts:
  
-* Each chain consists of blocks. 
-* Each block consists of transactions.
-* Each transaction consists of Transaction inputs and outputs.
+* Each CHAIN consists of blocks. 
+* Each BLOCK consists of transactions.
+* Each TRANSACTIONS consists of inputs and outputs.
 
 ## Updating our Blockchain
 
 With all these changes, we need to update our Blockchain code. As an example, let us premine 3 outputs - 30 and 20 and 10 mycoins to alice
 
 ```
-# src/chapter_05/Bockchain.js
+# mycode/Bockchain.js
 
 const Block = require('./Block');
 const Transaction = require('./Transaction')
@@ -174,20 +174,20 @@ const UTXO = require('./UTXO')
         return utxos
     }
 
+    // Update this function
     getAddressBalance(address){
         // try writing the code for this part
-        ...
     }
     ...
  }
 ```
 
-Q2. Write the code for the getAddressBalance function in Blockchain.js
+Q2. Update the code for the getAddressBalance function in Blockchain.js
 
 Now in main.js
 
 ```
-# src/chapter_05/main.js
+# mycode/main.js
 
 ...
 const TxIn = require('./TxIn')
@@ -312,19 +312,19 @@ Its time to simulate the scenario.
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_05/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_05/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js 
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_05/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js 
 ```
 
 In Terminal 4, 
@@ -337,15 +337,15 @@ curl http://localhost:3003/getUTXO/04c7facf88f8746f4388bcd1654a43afff83e5552a4b7
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
 # Alice send 31 coins to bob in Node 3. In terminal 4
-curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 11, "data": "i love BTC", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
+curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 31, "data": "i love BTC", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
 
 # Node 3 now mines a block. In terminal 4,
 curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2"}' http://localhost:3003/mineBlock
 
-# alice balance. It should be 49
+# alice balance. It should be 29
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
-# bob balance. It should be 11
+# bob balance. It should be 39
 curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75
 
 # miner balance. It should be 12.5

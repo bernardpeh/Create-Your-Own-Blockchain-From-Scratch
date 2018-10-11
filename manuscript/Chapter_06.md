@@ -80,7 +80,7 @@ Refer to this [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca
 In our course, we also want to add some simple scripting capabilities to our coin but not like the Bitcoin Script. Let's just say we want to allow the data field to be smart, ie we want the transaction output to be able to execute mycoin script. Mycoin script is basically just javascript wrapped in the mycoin tag
 
 ```
-in src/chapter_06/Blockchain.js
+in mycode/Blockchain.js
 
 ...
     mineBlock(minerAddress) {
@@ -121,7 +121,7 @@ in src/chapter_06/Blockchain.js
 ...
 ```
 
-Q1. In the mineBlock function, what if you run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
+Q1. In the mineBlock function, is it ok to run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
 
 With mycoin scripting supported, we have godly powers. Let's just say everyone agrees that the miner is getting too much reward. We want to overwrite the system and reduce his their reward from 12.5 to 0.2. We can inject the following script in the data field.
 
@@ -148,26 +148,26 @@ and privKey: 9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17
 In Terminal 1, start the node
 
 ```
-HTTP_PORT=3001 P2P_PORT=6001 node src/chapter_06/main.js
+HTTP_PORT=3001 P2P_PORT=6001 node mycode/main.js
 ```
 
 In Terminal 2, start the node
 
 ```
-HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node src/chapter_06/main.js 
+HTTP_PORT=3002 P2P_PORT=6002 PEERS=ws://localhost:6001 node mycode/main.js 
 ```
 
 In Terminal 3, start the node
 
 ```
-HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node src/chapter_06/main.js 
+HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js 
 ```
 
 In Terminal 4, 
 
 ```
 # Alice send 31 coins to bob in Node 3 with a twist in the data field. In terminal 4
-curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 11, "data": "<mycoin>block.transactions[0].txOut[0].value=0.2</mycoin>", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
+curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec", "toAddress": "049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75", "value": 31, "data": "<mycoin>block.transactions[0].txOut[0].value=0.2</mycoin>", "privKey": "9166a051fa4e3b5a128c83e5c3c172211a277651cb6b57349efc7bff2e9cfd17"}' http://localhost:3003/createTransaction
 
 # Node 3 now mines a block. In terminal 4,
 curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2"}' http://localhost:3003/mineBlock
@@ -175,7 +175,7 @@ curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd
 # alice balance. It should be 49
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
-# bob balance. It should be 11
+# bob balance. It should be 31
 curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75
 
 # miner balance. It should be 0.2
@@ -186,6 +186,8 @@ curl http://localhost:3003/getBlockchain
 curl http://localhost:3002/getBlockchain
 curl http://localhost:3001/getBlockchain
 ```
+
+Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any problems with this upgrade?
 
 Tip: Remember to commit your code before moving on to the next chapter.
 

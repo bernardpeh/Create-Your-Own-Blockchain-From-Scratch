@@ -28,6 +28,7 @@ class Block {
     }
 
     calculateHash() {
+        # Note that this is not the way bitcoin calculate the hash. Its just an example for our workshop.
         return CryptoJs.SHA256(this.previousHash + this.timestamp + JSON.stringify(this.transactions)).toString();
     }
 

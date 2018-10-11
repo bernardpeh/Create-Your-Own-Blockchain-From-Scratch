@@ -213,6 +213,20 @@ const wallet = require('./Wallet')
 
 Can you see a problem with injecting the private key into the payload? How can we avoid this?
 
+Tip: Remember to update createGenesisBlock in Blockchain.js as the Transaction constructor now accepts 5 parameters instead of 3.
+
+```
+# src/chapter04/Blockchain.js
+
+...
+    createGenesisBlock() {
+        // why do we need to hardcode a time?
+        let tx = new Transaction(null,'04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec', 30,'',1535766956)
+        return new Block(1535766956, [tx], "0")
+    }
+...
+```
+
 ## Chapter 5
 
 Q1. In a transaction, why is the sum of output always lesser than the sum of input?
@@ -275,6 +289,10 @@ You are exposing your private key in via curl. You lose your private key, you lo
 
 ## Chapter 6
 
-Q1. In the mineBlock function, what if you run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
+Q1. In the mineBlock function, is it ok to run `block = Blockchain.runSmartContract(block)` after `block.mineBlock(this.difficulty)` ?
 
-Ans: Before a block is mined, we can check that the smart contract is doing the right things and stop it if it doesn't. After a block is mined, it will be propagated straight away, even if the smart contract is legitimate, there might be a chance that your node and other nodes will not be in synced.
+Ans: Before a block is mined, we can check that the smart contract is doing the right things and stop it if it doesn't. After a block is mined, it should be immutable and be propagated straight away, so even if the smart contract not doing anything illegal, there might be a chance that your node and other nodes will not be in synced.
+
+Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any problems with this upgrade?
+
+Ans: No matter how fantastic this upgrade is, in a fully decentralised network, all machines have the rights not to upgrade. In that case, you are left with a fork, ie a split chain which is highly undesirable. Look at what happened to Ethereum Classic and Ethereum due to the DAO Fork. This is a much more serious issue to consider in a public rather than a private chain.
