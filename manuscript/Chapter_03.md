@@ -187,9 +187,9 @@ curl http://localhost:3001/getBalance/miner
 
 Tip: Remember to commit your code before moving on to the next chapter.
 
-## Short QUiz
+## Short Quiz
 
-{quiz, id: chapter_03, attempts: 99}
+{quiz, id: chapter_03, attempts: 1}
 
 ? Why are we hardcoding a 1535766955 as timestamp when creating the genesis block? 
 

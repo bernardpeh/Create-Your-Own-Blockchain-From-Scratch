@@ -297,11 +297,11 @@ Q5. Did you see any problems with alice sending 40 tokens to bob? How do we fix 
 
 Tip: Remember to commit your code before moving on to the next chapter.
 
-## Short QUiz
+## Short Quiz
 
-{quiz, id: chapter_02, attempts: 99}
+{quiz, id: chapter_02, attempts: 1}
 
-? What happens when 2 miners find a block at the same time?
+? In Bitcoin, what happens when 2 miners find a block at the same time?
 
 a) The Blockchain will use the chain of the miner that has the most nodes replicating its block.
 b) The Blockchain will use the chain of the miner with the most number of transaction in its block, ie the heaviest chain.

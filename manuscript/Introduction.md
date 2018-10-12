@@ -29,11 +29,11 @@ This course is an **intensive deep dive into the building blocks** of the Blockc
 
 In every chapter, the theory will consists of going through some basic concepts with Questions and Answer sessions. Sample code will be provided. Participants are strongly advised to answer the questions and run the code in a separate branch in their own environment to see how things work.
  
-If participants get stuck, *they can use the source code from various chapters under the src dir* so as to keep the course moving. This is a hands-on course. The best way to learn is to experiment it and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
+If participants got stuck, *they can use the source code from various chapters under the src dir* so as to keep the course moving. This is a hands-on course. The best way to learn is to experiment it and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
 
 ## The Challenge
 
-In the year 2022, your company decided to pay all employees using the company's own Cryptocurrency called "mycoin".
+In the year 2025, your company decided to pay all employees using the company's own Cryptocurrency called "mycoin".
 
 You have been tasked to create a proof of concept in NodeJS using the Bitcoin's model. You are not to take shortcuts but instead create one from scratch. It doesn't have to be 100% working. You just need to focus on proofing the concept rather worrying about the syntax.
 
@@ -91,9 +91,9 @@ Note: For windows users, you might also need
 npm install --save-dev cross-env
 ```
 
-## Short QUiz
+## Short Quiz
 
-{quiz, id: introduction, attempts: 99}
+{quiz, id: introduction, attempts: 1}
 
 ? What are the legitimate ways to create a new cryptocurrency other than creating one from scratch?
 

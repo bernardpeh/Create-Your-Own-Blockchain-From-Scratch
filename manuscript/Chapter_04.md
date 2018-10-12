@@ -189,7 +189,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_04, attempts: 99}
+{quiz, id: chapter_04, attempts: 1}
 
 ? Which of the following option is the best way to protect your private keys?
 

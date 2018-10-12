@@ -191,11 +191,11 @@ Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any pro
 
 Tip: Remember to commit your code before moving on to the next chapter.
 
-## Short QUiz
+## Short Quiz
 
-{quiz, id: chapter_06, attempts: 99}
+{quiz, id: chapter_06, attempts: 1}
 
-? In stack programming, What is the following `2 2 2 2` returns?
+? In a stack machine, What is the stack `2 2 2 2` returns?
 
 A) 2
 b) 4
