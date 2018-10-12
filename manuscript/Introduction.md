@@ -65,7 +65,7 @@ Put all your knowledge about the Blockchain and Cryptocurrency into code and giv
 Clone the repo in your home dir:
 
 ```
-git clone git@github.com:bernardpeh/Create-Your-Own-Blockchain-From-Scratch.git
+git clone https://github.com/bernardpeh/Create-Your-Own-Blockchain-From-Scratch.git
 ```
 
 Opening up a terminal and in the mycoin folder, install all node packages and initialise our workspace
