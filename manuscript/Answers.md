@@ -246,7 +246,7 @@ Tip: Remember to update createGenesisBlock in Blockchain.js as the Transaction c
 ...
 ```
 
-Short Quiz 1. Which of the following option is the best way to protect your private keys?
+Short Quiz 1. Which of the following option is the safest way to prevent your private keys being stolen?
 
 Ans: Write your key down on a piece of paper yourself and hid it somewhere.
 

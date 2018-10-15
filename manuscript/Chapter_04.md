@@ -191,12 +191,12 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 {quiz, id: chapter_04, attempts: 1}
 
-? Which of the following option is the safest way to protect your private keys?
+? Which of the following option is the safest way to prevent your private keys being stolen?
 
-b) Store your key in an encrypted disk.
-c) Use third party password protection service or software to store your key.
-d) Get someone to engrave your key on a steel plate.
-E) Write your key down on a piece of paper yourself and hid it somewhere.
+a) Store your key in an encrypted disk.
+b) Use third party password protection service or software to store your key.
+c) Get someone to engrave your key on a steel plate.
+D) Write your key down on a piece of paper yourself and hid it somewhere.
 
 ? Revealing your wallet's public key provides a small chance for other people to guess your private key.
 a) true
