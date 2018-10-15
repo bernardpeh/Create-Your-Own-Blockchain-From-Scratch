@@ -189,7 +189,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_04, attempts: 1}
+{quiz, id: chapter_04, attempts: 10}
 
 ? Which of the following option is the safest way to prevent your private keys being stolen?
 

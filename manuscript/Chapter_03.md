@@ -189,7 +189,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_03, attempts: 1}
+{quiz, id: chapter_03, attempts: 10}
 
 ? Refering to the code below, why are we hardcoding a 1535766955 as timestamp when creating mining the block? 
 

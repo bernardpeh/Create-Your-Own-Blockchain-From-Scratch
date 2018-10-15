@@ -100,7 +100,7 @@ npm install --save-dev cross-env
 
 ## Short Quiz
 
-{quiz, id: introduction, attempts: 1}
+{quiz, id: introduction, attempts: 10}
 
 ? What are the legitimate ways to create a new cryptocurrency other than creating one from scratch?
 

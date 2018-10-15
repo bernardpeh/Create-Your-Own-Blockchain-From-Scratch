@@ -193,7 +193,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_06, attempts: 1}
+{quiz, id: chapter_06, attempts: 10}
 
 ? In a stack machine, What does the stack `2 2 2 2` returns?
 

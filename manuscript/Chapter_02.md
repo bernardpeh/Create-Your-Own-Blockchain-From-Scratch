@@ -299,7 +299,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_02, attempts: 1}
+{quiz, id: chapter_02, attempts: 10}
 
 ? In Bitcoin, what happens when 2 miners find a block at the same time?
 

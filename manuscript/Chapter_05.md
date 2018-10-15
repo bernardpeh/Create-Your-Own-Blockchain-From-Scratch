@@ -359,7 +359,7 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 ## Short Quiz
 
-{quiz, id: chapter_05, attempts: 1}
+{quiz, id: chapter_05, attempts: 10}
 
 ? In a Bitcoin transaction, why is the sum of output always lesser than the sum of input?
 

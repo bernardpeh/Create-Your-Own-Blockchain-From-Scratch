@@ -156,7 +156,7 @@ Would you use decentralised or centralised systems for the following use cases a
 
 ## Short Quiz
 
-{quiz, id: chapter_01, attempts: 1}
+{quiz, id: chapter_01, attempts: 10}
 
 ? A Distributed Ledger can be very decentralised, cheap to use and fast.
 
