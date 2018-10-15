@@ -195,13 +195,20 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 {quiz, id: chapter_06, attempts: 1}
 
-? In a stack machine, What is the stack `2 2 2 2` returns?
+? In a stack machine, What does the stack `2 2 2 2` returns?
 
 A) 2
 b) 4
 c) 6
 d) 8
-e) 2222
+e) 16
+
+? What are the benefits of Non-Turing Complete languages
+
+a) More predictable resource usage
+b) lesser loopholes for hacks to occur
+c) Easier to debug
+D) All of the above
 
 {/quiz}
 

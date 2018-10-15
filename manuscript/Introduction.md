@@ -1,6 +1,8 @@
 # Introduction
 
-There is a very strong correlation between the popularity of Blockchain and Bitcoin (cryptocurrency). Today, many people use these words interchangeably. The fact is that Bitcoin is a product of Blockchain, ie Blockchain can exists without Bitcoin and not the other way round. Think of Blockchain as the bricks and Bitcoin as the townhouse. With the same bricks, we could also build different type of houses. Technically, this means that the same technology could create other Cryptocurrencies such as Litecoin, Ethereum, Ripple...etc.
+There is a very strong correlation between the popularity of Blockchain and Bitcoin (cryptocurrency). Today, many people use these words interchangeably. The fact is that Bitcoin is a product of Blockchain, ie Blockchain can exists without Bitcoin and not the other way round. Think of Blockchain as the bricks and Bitcoin as the house. With the same bricks, we could also build different type of houses. Technically, this means that the same technology could create other Cryptocurrencies such as Litecoin, Ethereum, Ripple...etc.
+
+Cryptocurrency is simply a framework that allows the transfer of value and people have been trying to do that for years. Many projects were unsuccessful because of the need of a fully functional decentralised system.
 
 Contrary to what many people thought, Satoshi didn't create the whole of Bitcoin. He simply bundled several existing technologies together and created an incentive for using them. In my opinion, his greatest contribution would be creating a system to incentivise the miners. Without the miners, Bitcoin will have no value and its network will not be secure (decentralised).
 
@@ -91,6 +93,11 @@ Note: For windows users, you might also need
 npm install --save-dev cross-env
 ```
 
+## Resources
+
+* The [Bitoin Whitepaper](https://bitcoin.org/bitcoin.pdf)
+* [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
+
 ## Short Quiz
 
 {quiz, id: introduction, attempts: 1}
@@ -100,5 +107,13 @@ npm install --save-dev cross-env
 a) Copy the code of a current coin and tweak the parameters.
 b) Create a Token Smart Contract on a platform that supports it.
 C) All of the above.
+
+? Which of the following false for all cryptocurrencies currently?
+
+A) It is faster to use cryptocurrency for cross border funds transfer as compared to using traditional banking system.
+b) It is cheap to send and receive crytocurrencies.
+c) The price of cryptocurrencies can be manipulated.
+d) Using cryptocurrency to transfer funds is more secure than using fiat currency. 
+e) All of the above.
 
 {/quiz}

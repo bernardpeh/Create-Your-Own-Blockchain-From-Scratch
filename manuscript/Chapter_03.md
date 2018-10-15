@@ -191,10 +191,21 @@ Tip: Remember to commit your code before moving on to the next chapter.
 
 {quiz, id: chapter_03, attempts: 1}
 
-? Why are we hardcoding a 1535766955 as timestamp when creating the genesis block? 
+? Refering to the code below, why are we hardcoding a 1535766955 as timestamp when creating mining the block? 
 
-a) Because its the standard for genesis block creation.
-b) Because it has certain meaning in Bitcoin.
-C) Because we want a predictable block hash.
+```
+let block = new Block(1535766955, this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
+block.mineBlock(this.difficulty)
+```
+
+a) Because its the bytecode for genesis block creation.
+b) Because it is the has certain meaning in Bitcoin.
+C) Because we hope to have a predictable block hash.
+
+? In Proof-of-Work, which of the following is false?
+
+a) Any node can create new blocks
+B) Any new node must be approved by the network
+c) It is possible to find a block with the same hash
 
 {/quiz}

@@ -309,6 +309,13 @@ c) The Blockchain will use the chain of the miner with the highest transaction f
 D) Nothing happens, the network continues to have 2 split chains.
 e) None of the above.
 
+? How can one person double spend in Bitcoin?
+
+A) The attacker sends the coin to an address and receives a tx id. It then builds a fork that does not contain the tx id and hope that this fork will become the longest chain in the network.
+b) The attacker sends 2 different transactions at the same time to the network. Only one of them is recorded in the Blockchain and the other one disappear due to race onditions. 
+c) The attacker sends the coin to an address and receives a tx id. It then creates another transaction to cancel the previous transaction and get the funds back.
+d) The attacker sends the coin to an address and receives a tx id. It then builds a fork containing the same tx id but with 0 btc, hoping that this fork will become the longest chain in the network.
+
 {/quiz}
 
 ## Resources

@@ -84,6 +84,10 @@ Short Quiz Q1. What happens when 2 miners find a block at the same time?
 
 Nothing happens, the network continues to have 2 split chains. We have a fork and a possibility of double spending if you accept 1 block confirmation only. The first miner that finds the next block will use its history as the source of truth.
 
+Short Quiz 02. How can one person double spend in Bitcoin?
+
+The attacker sends the coin to an address and receives a tx id. It then builds a fork that does not contain the tx id and hope that this fork will become the longest chain in the network.
+
 ## Chapter 3
 
 Q1. Write a mineBlock function that accepts a difficulty parameter in the Block class. this.hash must also be guaranteed unique.
@@ -137,9 +141,18 @@ Q2. In Blockchain.js, add a mineBlock function that accepts a minerAddress argum
     ...
 ```
 
-Short Quiz Q1. Why are we hardcoding a 1535766955 as timestamp when creating a block? 
+Short Quiz 1. Refering to the code below, why are we hardcoding a 1535766955 as timestamp when creating mining the block? 
 
-Ans: Because we want to provide the same conditions for calculateHash() to find the next hash.
+```
+let block = new Block(1535766955, this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
+block.mineBlock(this.difficulty)
+```
+
+Ans: C) Because we hope to have a predictable block hash (calculateHash()).
+
+Short Quiz 2. In Proof-of-Work, which of the following is false?
+
+Ans: Any new node must be approved by the network
 
 ## Chapter 4
 
@@ -229,9 +242,15 @@ Tip: Remember to update createGenesisBlock in Blockchain.js as the Transaction c
 ...
 ```
 
-Short Quiz Q1. Which of the following option is the best way to protect your private keys?
+Short Quiz 1. Which of the following option is the best way to protect your private keys?
 
-* Split your key into chunks and give them to different people for safe keeping.
+Ans: Write your key down on a piece of paper yourself and hid it somewhere.
+
+Other options include key sharding, ie split your key into chunks and give them to different people for safe keeping.
+
+Short Quiz 2. Revealing your wallet's public key provides a small chance for other people to guess your private key.
+
+false
 
 ## Chapter 5
 
@@ -307,6 +326,13 @@ Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any pro
 
 Ans: No matter how fantastic this upgrade is, in a fully decentralised network, all machines have the rights not to upgrade. In that case, you are left with a fork, ie a split chain which is highly undesirable. Look at what happened to Ethereum Classic and Ethereum due to the [DAO Fork](https://www.coindesk.com/ethereum-executes-blockchain-hard-fork-return-dao-investor-funds/). This is a much more serious issue to consider in a public rather than a private chain.
 
-Short Quiz Q1. In stack programming, What is the following `2 2 2 2` returns?
+Short Quiz 1. In stack programming, What is the following `2 2 2 2` returns?
 
 Ans: Based on LIFO, it returns 2
+
+Short Quiz 2. What are the benefits of Non-Turing Complete languages
+
+* More predictable resource usage
+* lesser loopholes for hacks to occur
+* Easier to debug
+

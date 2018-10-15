@@ -4,7 +4,7 @@ Congratulations for perservering thus far. I hope you learn something and is now
 
 Some good platforms to go from here will be [Ethereum](https://ethereum.org) or [Hyperledger](https://www.hyperledger.org)
 
-Please spread the news about this course and provide good feedback on it if you feel its useful.
+Please recommend this course if you feel its useful to you. Feedback on how I could improve on it is also much appreciated.
 
 ## Feedback
 

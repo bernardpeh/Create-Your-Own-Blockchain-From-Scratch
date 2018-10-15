@@ -148,7 +148,7 @@ There might be many unanswered questions at this stage. Things will be clearer w
 
 Would you use decentralised or centralised systems for the following use cases and why? (ungraded)
 
-* Creation of a national identity system for its citizens.
+* Creation of a national identity system for a country's citizens.
 * A parcel tracking system for company xyz.
 * Tracking of rice production between Vietnam and Australia.
 * Voting for the next government.
