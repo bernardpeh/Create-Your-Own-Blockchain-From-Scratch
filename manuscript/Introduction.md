@@ -108,7 +108,7 @@ a) Copy the code of a current coin and tweak the parameters.
 b) Create a Token Smart Contract on a platform that supports it.
 C) All of the above.
 
-? Which of the following false for all cryptocurrencies currently?
+? Which of the following is/are true for all cryptocurrencies currently?
 
 A) It is faster to use cryptocurrency for cross border funds transfer as compared to using traditional banking system.
 b) It is cheap to send and receive crytocurrencies.

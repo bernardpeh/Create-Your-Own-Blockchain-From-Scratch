@@ -4,10 +4,14 @@
 
 ## Introduction
 
-Short Quiz Q1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
+Short Quiz 1. How many ways are there to create a new cryptocurrency other than creating one from scratch?
 
 * Copy the code of a cryptocurrency and tweak the parameters (eg Bitcoin Cash, Bitcoin Diamond, Bitcoin Gold)
 * Create a Token Smart Contract on a platform that supports it. Eg, Ethereum, NEO, WAVES, EOS, NEM..etc  
+
+Short Quiz 2. Which of the following is/are true for all cryptocurrencies currently?
+
+Ans: It is faster to use cryptocurrency for cross border funds transfer as compared to using traditional banking system.
 
 ## Chapter 1
 
