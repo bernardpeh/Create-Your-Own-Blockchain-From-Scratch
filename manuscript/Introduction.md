@@ -6,11 +6,25 @@ Cryptocurrency is simply a framework that allows the transfer of value and peopl
 
 Contrary to what many people thought, Satoshi didn't create the whole of Bitcoin. He simply bundled several existing technologies together and created an incentive for using them. In my opinion, his greatest contribution would be creating a system to incentivise the miners. Without the miners, Bitcoin will have no value and its network will not be secure (decentralised).
 
-Bitcoin has its humble beginnings in 2009 and has attracted worldwide attention ever since. The fact that it allows cross border payments without interference from anyone including the government means that it is a highly controversial technology. For the first time in history, we have a currency that is beyond the control of any governments, giving everyone full financial freedom.
+Bitcoin has its humble beginnings in 2009 and has attracted worldwide attention ever since. The fact that it allows cross border payments without interference from anyone including the government means that it is a highly controversial technology. For the first time in history, we have a currency that is beyond the control of any banks and governments, giving everyone full financial freedom.
 
 Today, most people see Cryptocurrencies as a get rich scheme. Let's be honest, people who know it well are technical people who cannot explain it in layman's language. People who can explain it are marketeers and even scammers who love to trick the uneducated. Sadly, cryptocurrencies are still highly manipulative at this stage and mainly used by traders for pump and dump.
 
 There are always 2 sides to a coin. Cryptocurrencies share a unique property with fiat currency - it is impossible to double spend. If I give 1 dollar to bob, my pocket will have 1 dollar less. I cannot magically make another dollar appear in my pocket and there is no way to fake this event. If I do it in public, everyone will know that I have 1 dollar less and bob has 1 dollar more. This immutable transactional property can be very useful for any applications that requires transparency which is the biggest usecase of a public ledger.
+
+## The Genesis Block
+
+2009-01-03 18:15:05 is an important date in our evolution history as we have our first **trustless** virtual currency. It is the date when Satoshi mined the first block being (Genesis Block), ie [Block height 0](https://www.blockchain.com/btc/block-height/0).
+
+Let us look at the first transaction ever made. Satoshi embedded a message into the transaction "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+
+> The root problem with conventional currency is all the trust that's required to make it work. The central bank must be trusted not to debase the currency, but the history of fiat currencies is full of breaches of that trust. Banks must be trusted to hold our money and transfer it electronically, but they lend it out in waves of credit bubbles with barely a fraction in reserve. We have to trust them with our privacy, trust them not to let identity thieves drain our accounts. - Satoshi Nakamoto
+
+Satoshi was concerned that many banks lied about the amount of funds they have and they could threaten the governments and get away easily after crashing the global economy.
+
+Bitcoin was created to fight corruption.
+
+## The Blockchain Ecosystem
 
 It is important to note that when people talk about Blockchain, they are actually referring to the Blockchain ecosystem. The ecosystem comprises of 6 technologies with "Blockchain" being one of them. This immutability transactional ecosystem cannot work if its missing one of the six key ingredients. The 6 technologies are:
 
@@ -93,11 +107,6 @@ Note: For windows users, you might also need
 npm install --save-dev cross-env
 ```
 
-## Resources
-
-* The [Bitoin Whitepaper](https://bitcoin.org/bitcoin.pdf)
-* [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
-
 ## Short Quiz
 
 {quiz, id: introduction, attempts: 10}
@@ -117,3 +126,8 @@ d) Using cryptocurrency to transfer funds is more secure than using fiat currenc
 e) All of the above.
 
 {/quiz}
+
+## Resources
+
+* The [Bitoin Whitepaper](https://bitcoin.org/bitcoin.pdf)
+* [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
