@@ -34,7 +34,7 @@ class Blockchain{
         this.pendingTransactions.unshift(new Transaction(null, minerAddress, this.miningReward))
 
         // create new block based on hardcoded timestamp, all pending tx and previous blockhash
-        let block = new Block(1535766955, this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
+        let block = new Block(date.now(), this.pendingTransactions, this.getBlock(this.getBlockHeight()).hash)
         block.mineBlock(this.difficulty)
 
         this.chain.push(block)
