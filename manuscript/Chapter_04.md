@@ -199,6 +199,7 @@ c) Get someone to engrave your key on a steel plate.
 D) Write your key down on a piece of paper yourself and hid it somewhere.
 
 ? Revealing your wallet's public key provides a small chance for other people to guess your private key.
+
 a) true
 B) false
 
