@@ -172,7 +172,7 @@ curl -H "Content-type:application/json" --data '{"fromAddress" :"04c7facf88f8746
 # Node 3 now mines a block. In terminal 4,
 curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd1772f60abb8b609a8c0710483a4a1c67d1c9ed66e6d366ec206791437a83812820ca9a1a6a186f3f41d1b3537a6c7a86b02a7db7ad46cc9f6e2"}' http://localhost:3003/mineBlock
 
-# alice balance. It should be 49
+# alice balance. It should be 29
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
 # bob balance. It should be 31
