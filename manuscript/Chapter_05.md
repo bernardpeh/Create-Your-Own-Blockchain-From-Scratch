@@ -180,7 +180,7 @@ const UTXO = require('./UTXO')
  }
 ```
 
-Q2. Update the code for the getAddressBalance function in Blockchain.js
+Q1. Update the code for the getAddressBalance function in Blockchain.js
 
 Now in main.js
 
@@ -257,7 +257,7 @@ const TxOut = require('./TxOut')
 ...
 ```
 
-Q3. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
+Q2. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
 
 ```
 // Get the UTXO and decide how many utxo to sign.
@@ -273,7 +273,7 @@ for(const utxo of utxos) {
 }
 ```
 
-Q4. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
+Q3. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
 
 ```
 // lets spend the the UTXO by signing them. What is wrong with this?
@@ -328,6 +328,8 @@ HTTP_PORT=3003 P2P_PORT=6003 PEERS=ws://localhost:6002 node mycode/main.js
 In Terminal 4, 
 
 ```
+# Note: I have left some minor errors in the code displayed in this chapter. Fix them as you go through the test.
+
 # Get UTXO of Alice in node 3. In terminal 4,
 curl http://localhost:3003/getUTXO/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
@@ -343,7 +345,7 @@ curl -H "Content-type:application/json" --data '{"minerAddress":"046eea81eeb92fd
 # alice balance. It should be 29
 curl http://localhost:3001/getBalance/04c7facf88f8746f4388bcd1654a43afff83e5552a4b723352b5547cd5ba021e55ea4014c5cdec3133652f93a6d032b394387c487ed881cee5ac232bbc754cddec
 
-# bob balance. It should be 39
+# bob balance. It should be 31
 curl http://localhost:3001/getBalance/049cb31ebe756ed1e5101993c5760798f1ff0a8734e4378c138ea36f5503cee4b8b370a028ff3464592bb118a749d8b46f99753729ed64a7a23a0a98bb282c5d75
 
 # miner balance. It should be 12.5
