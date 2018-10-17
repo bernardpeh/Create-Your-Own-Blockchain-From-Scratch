@@ -146,6 +146,19 @@ var initP2PServer = () => {
 
 In mineBlock api, we make sure we provide the miner Address. Once a block is produced, we broadcast the data. All nodes receiving the data must verify the data before accepting it into the chain. Once this protocol is established, we will have a consistent decentralised ledger.
 
+## 51% Attack
+
+If a malicious miner controls a large proportion of hashing power, he will always have the higher possibility of finding the next block, meaning he can chose not to broadcast his new block immediately but instead at about the same time a new block is found in the main chain (he needs to be very precise about his announcement and lucky to be always ahead of the main chain). Next, he spends his funds in the main chain but don’t record it in his chain. After a number of confirmations, there are now 2 competing chains, one from the malicious miner and one from the main chain. Once the malicious miner is happy with all his spendings in the main chain and after X confirmations, he confidently mines the next block and broadcast it immediately with a different history (without his spending transactions that were recorded in the main chain before). Because the malicious miner has the longest chain, the Bitcoin protocol ensures that all the other miners will use it as the best chain and propagate it across the network. The malicious miner has essentially reversed the transaction, changed the history in the latest main chain and achieves double spending.
+
+https://people.xiph.org/~greg/attack_success.html gives us an idea of the possibility of double spending by a malicious miner based on the hash power they have. For example,
+
+* A miner with hash power of 25% of the global network has 52% of double spending possibility on 1 confirmation. They will have 20% of double spending on 3 confirmations and 5% of double spending possibility on 6 confirmations.
+* At 50% of the hashrate, the miner has 100% of double spending possibility forever (many people call this the 51% attack).
+
+If a miner holds more than 50% of the total hashing power, they don’t really have to care about the other miners as they will win out in the long run and take over the main chain. They could double spend any time they want. However once that happens, other miners can choose not to connect to the malicious miner, causing 2 soft forks in the chain.
+
+![51% attack and double spending](51percent.png)
+
 ## Testing
 
 In Terminal 1, start the node
