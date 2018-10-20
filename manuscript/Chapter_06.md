@@ -72,7 +72,9 @@ Let's say the sender is Alice and the Receiver is Bob.
 * OP_VERIFY checks the value at the top of the stack. If false, script is terminated. If true, it pops the true off the stack.
 * OP_CHECKSIG now checks the Pubkey, all data required to be signed and the signature comes from the same person.
 
-Refer to this [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef) as an example.
+![Sample BTC Transaction](btc_tx_example.png)
+
+Refer to this sample [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef) as an example.
 
 
 ## Making MyCoin Smart

@@ -141,6 +141,23 @@ When Alice wants to send some coins to Bob, she needs to proof she owns the coin
 
 Q4. Add logic to createTransaction API endpoint in main.js to check that sender is allowed to spend the funds before adding the transaction to the pending transactions queue.
 
+## HD Wallet
+
+HD Wallet (aka Seed wallet) stands for [Hierarchical Deterministic Wallet](https://en.bitcoin.it/wiki/Deterministic_wallet) based on the [Bitcoin Improvement Protocol 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). Most crypto wallets today are HD wallets.
+
+In Bitcoin, we know that the address of a wallet is the hash of the public key, a 20 bytes hexadecimal like so 0xf5a7c8b332be5c594def279427777db27eb84387. BIP32 allows a combination of random words to be the seed to generate unlimited number of private keys.
+
+![HD Wallet](hd_wallet.png)
+
+The address of a HD wallet can be referenced by a path like so `m/44'/0'/0'/1/0` where
+
+* First field: Master key, ie 'm'.
+* Second field : BIP number, ie 44.
+* Third field: Coin number, ie 0.
+* Fourth Field: Account number, ie 0.
+* Fifth field: type, ie 0 for normal and 1 for change address.
+* Sixth field: Address or child id, ie 0
+
 ## Testing
 
 Its time to simulate the scenario.
@@ -203,8 +220,17 @@ D) Write your key down on a piece of paper yourself and hid it somewhere.
 a) true
 B) false
 
+? Which of the following is the exact HD wallet path for the first child address of the first Ethereum Classic account?
+
+a) m/44/60/0/1/1
+b) m/32/0/0/1/1
+C) m/44/61/0/1/1
+d) m/32/61/0/0/1
+e) m/44/60/0/0/1
+
 {/quiz}
 
 ## Resources
 
 * [Bitcoin Addresses](https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses)
+* [HD Path for different coins](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)

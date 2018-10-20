@@ -6,5 +6,6 @@ Chapter_04.md
 Chapter_05.md
 Chapter_06.md
 Chapter_07.md
+Chapter_08.md
 Conclusion.md
 

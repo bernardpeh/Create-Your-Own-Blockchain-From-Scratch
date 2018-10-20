@@ -254,7 +254,13 @@ Other options include key sharding, ie split your key into chunks and give them 
 
 Short Quiz 2. Revealing your wallet's public key provides a small chance for other people to guess your private key.
 
-false
+Ans: false
+
+Short Quiz 3. Which of the following is the exact HD wallet path for the first child address of the first Ethereum Classic account?
+
+Ans: C) m/44/61/0/1/1 has the closes answer. 
+
+A possible answer could also be m/44/61/0/0/1
 
 ## Chapter 5
 
@@ -290,6 +296,8 @@ for(const utxo of utxos) {
 There is no problem with the code. Its worth noting that the sequence of utxo is important. Imagine you are sending 21 mycoin to someone, would you spend 1 output of 30 mycoin or 2 outputs of 10 and 20 mycoin? There is a big science on it - https://medium.com/@lopp/the-challenges-of-optimizing-unspent-output-selection-a3e5d05d13ef
 
 It could be really expensive to send large amount of small outputs. Think of the hassle of having large amount of 1 cent in your pocket. Bitcoin nodes will reject transactions that are larger than 100KB in size. The size of Bitcoin block is limited to 1 MB and you have to pay higher tx fees if there are lots of inputs and outputs.
+
+It is recommended to consolidate multiple utxo addresses with small value into 1 address during low peak period.
 
 Q3. Refer to the createTransaction endpoint in main.js. What problem can you see with the code here?
 
@@ -330,6 +338,14 @@ Q2. Let's just say Mycoin Script is a new upgrade to Mycoin. Can you see any pro
 
 Ans: No matter how fantastic this upgrade is, in a fully decentralised network, all machines have the rights not to upgrade. In that case, you are left with a fork, ie a split chain which is highly undesirable. Look at what happened to Ethereum Classic and Ethereum due to the [DAO Fork](https://www.coindesk.com/ethereum-executes-blockchain-hard-fork-return-dao-investor-funds/). This is a much more serious issue to consider in a public rather than a private chain.
 
+There are 2 types of fork.
+
+“Soft" (Soft Fork) changes tighten up the rules - old software will accept all the blocks and transactions created by new software, but the opposite may not be true. "Soft" changes do not require the entire network of miners and merchants and users to upgrade or be left behind. 
+
+"Hard" (Hard Fork) changes modify the rules in a way that old, un-upgraded software consider illegal. At this point it is much, much more difficult (some might say impossible) to roll out "hard" changes, because they require every miner and merchant and user to upgrade.
+
+For fork, we have also be careful about [replay attack](https://blockonomi.com/replay-attacks/).
+
 Short Quiz 1. In stack programming, What is the following `2 2 2 2` returns?
 
 Ans: Based on LIFO, it returns 2
@@ -340,3 +356,16 @@ Short Quiz 2. What are the benefits of Non-Turing Complete languages
 * lesser loopholes for hacks to occur
 * Easier to debug
 
+## Chapter 7
+
+Q1. In the POW system, given each transaction as 249 bytes and if it takes an average of 10 mins to mine a block, find the transaction speed of Bitcoin per second?
+
+Ans: Assuming each block is 1 MB, and 10 mins is 600 secs, ans is 1000000 / 249 / 600 = 6.7 tx/s
+
+Short Q1. How does a crypto exchange provide fast Bitcoin to Litecoin trading since we know that Bitcoin cannot scale at the moment?
+
+A) The trading doesn't happen on the chain, its just fake manipulation of database values.
+
+Short Q2. You created a transaction in the Bitcoin network but realised your fee was too low. Due to its low scalability, what is the best way to ensure that your transaction is mined as soon as possible.
+
+D) Try to spend one of the unconfirmed output from the previous transaction with a higher tx fee.
