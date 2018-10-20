@@ -4,7 +4,7 @@ Scalability is the biggest problem in a fully decentralised Blockchain like Bitc
 
 Q1. In the POW system, given each transaction as 249 bytes and if it takes an average of 10 mins to mine a block, find the transaction speed of Bitcoin (per second)?
 
-There are several ways to increase the transaction speed. One way is to use [layer 2 solutions](https://hackernoon.com/blockchain-scalability-layer2-bitcoin-ethereum-bb34afd1f9d2).
+There are several ways to increase the transaction speed without sacrificing decentralisation. One way is to use [layer 2 solutions](https://hackernoon.com/blockchain-scalability-layer2-bitcoin-ethereum-bb34afd1f9d2).
 
 ## Layer 2 Solutions
 
