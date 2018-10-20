@@ -36,6 +36,8 @@ What does all this mean? For a typical Bitcoin transaction of value, you get 33%
 
 ## Short Quiz
 
+{quiz, id: chapter_07, attempts: 10}
+
 ? How does a crypto exchange provide fast Bitcoin to Litecoin trading since we know that Bitcoin cannot scale at the moment?
 
 A) The trading doesn't happen on the chain, its just fake manipulation of database values.
@@ -48,6 +50,8 @@ a) Be patient and wait for weekends because the number of transactions are lower
 b) Try to spend the unconfirmed output from the previous transaction with the same transaction fee but turning on the “Replace-by-fee” option.
 c) Call up a miner and tell them to include your transaction manually in the next block.
 D) Try to spend one of the unconfirmed output from the previous transaction with a higher tx fee.
+
+{/quiz}
 
 ## Resources
 
