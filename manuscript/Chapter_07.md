@@ -1,12 +1,12 @@
 # Chapter 7: Scalability
 
-Scalability is the biggest problem in a fully decentralised Blockchain like Bitcoin at the moment. As we learned, the more decentralised the Blockchain is, the slower the concensus, meaning the lesser the tx/s is. To be fully usable in the day to day life, it has to support micropayments cheaply and be as fast as visa which is about 4000 tx/s. 
+Scalability is the biggest problem in a fully decentralised Blockchain like Bitcoin at the moment. As we have learned, the more decentralised the Blockchain is, the slower the concensus, meaning the lesser the tx/s is. To be fully usable in the day to day life, it has to support micropayments cheaply and be as fast as visa which is about 4000 tx/s. 
 
 Q1. In the POW system, given each transaction as 249 bytes and if it takes an average of 10 mins to mine a block, find the transaction speed of Bitcoin (per second)?
 
 There are several ways to increase the transaction speed. One way is to use [layer 2 solutions](https://hackernoon.com/blockchain-scalability-layer2-bitcoin-ethereum-bb34afd1f9d2).
 
-## Layer 2 Solution
+## Layer 2 Solutions
 
 Bitcoin’s main chain (Layer 1) transaction speed is too slow for mass adoption. Satoshi did propose a solution:
 
