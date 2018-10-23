@@ -17,7 +17,9 @@ Ans: It is faster to use cryptocurrency for cross border funds transfer as compa
 
 Short Quiz  Q1. A Distributed Ledger can be very decentralised, cheap to use and fast.
 
-Choose 2 out of 3. A fully centralised system is the cheapest and fastest. On the other hand, a fully decentralised system is either very costly or very slow.
+The [project management triangle](https://en.wikipedia.org/wiki/Project_management_triangle) applies. Choose 2 out of 3. A fully centralised system is the cheapest and fastest. On the other hand, a fully decentralised system is either very costly or very slow.
+
+In distributed system, the [CAP theorem](https://cryptographics.info/cryptographics/blockchain/cap-theorem/) applies.
 
 Short Quiz Q2. Would you use decentralised or centralised systems for the following use cases and why?
 
