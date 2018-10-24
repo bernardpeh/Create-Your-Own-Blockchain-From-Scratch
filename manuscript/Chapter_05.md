@@ -380,4 +380,5 @@ d) No one gets the 29 mycoins. Its lost forever.
 
 ## Resources
 
+* [Bitoin transactions](https://bitcoin.org/en/developer-guide#transactions)
 * [Optimising UTXO](https://medium.com/@lopp/the-challenges-of-optimizing-unspent-output-selection-a3e5d05d13ef)

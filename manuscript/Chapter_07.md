@@ -20,6 +20,10 @@ The second option is to pack more transactions into a block and we can do this i
 
 Segwit (Segregated Witness) is a backwards compatible upgrade of the core Bitcoin blockchain. In the current Bitcoin implementation, all transactions are packed in a 1 MB block limit. In a transaction, the digital signature (witness) takes up the most space. The digital signature is the encrypted proof of the sender, receiver and the transaction details, ie who sends how much BTC to who. If we can segregate the signature from each transaction, then we can pack more transactions in each block, thereby increasing transaction speed and reducing transaction fees. The segregated signature lives in a new extended block area and not part of the 1 MB main block.
 
+![segwit](segwit.png)
+
+You can also see that segwit solves the [transaction malleability](https://bitcoin.org/en/glossary/malleability) problem that we talked about in the previous chapter (See below).
+
 Another way to improve scalability is to pack more transactions into a block. Let's just say we increase the block size from 1 MB to 4MB or more, then suddenly we can increase the transaction speed by 4 times. This is what Bitcoin Cash (BCH) has done.
 
 It is important to note that Traditional Bitcoin address should start with 1 or 3. Segwit address should start with 3 or bc1. See prefixes in https://en.bitcoin.it/wiki/List_of_address_prefixes if interested.
@@ -33,6 +37,14 @@ The actual tx size is 249 bytes and it would take up 249 x 4 = 996 WU if its not
 What does all this mean? For a typical Bitcoin transaction of value, you get 33% discount on transaction fee if you use Segwit. You get bigger discount if your signature is bigger.
 
 [Segwit2x]((https://cointelegraph.com/news/bitcoin-core-developers-remain-adamant-in-opposition-to-segwit2x-potential-showdown-in-november)) combines Segwit in with a 2MB block size Hard-Fork instead of 1MB, meaning a maximum of 8000 WU. On November 8, 2017 the developers of SegWit2x announced that the planned hard fork had been canceled, due to a lack of sufficient consensus.
+
+## Transaction Malleability
+
+The transaction id in Bitcoin is a SHA256 hash of all the fields of the transaction data. If any of the field change, the tx id will change. A node in the network can change the transaction id by simply mutating the signature, not changing its behaviour and still making it valid.
+
+So an attacker can intercept a normal transaction and distribute the modified version through the network. Some miners will include this modified transaction instead of the original one. If this tx is mined, then the original tx is rejected. So if you making a withdrawal from an exchange to someone and are looking for the original tx id, you might not find it in the blockchain. The exchange also didn't register the tx id the Blockchain and did not deduct your funds. So you have the ability to send the funds again.
+
+Since segwit separates scriptsig from the input section into an extended block (a separate "witness data" section). Transaction id will be computed without it and hence it will never be changed.
 
 ## Short Quiz
 

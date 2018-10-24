@@ -56,7 +56,6 @@ To spend the funds in the output, the target address has to provide the input to
 
 ```
 <Sig> <PubKey> OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
-
 ```
 
 where Sig is the signature of the target user and Pubkey is the public key of the target user.
@@ -67,15 +66,14 @@ Let's say the sender is Alice and the Receiver is Bob.
 * Bob's public key added next.
 * The op code OP_DUP duplicates the public key.
 * OP_HASH160 does a [ripmd160](https://en.wikipedia.org/wiki/RIPEMD) on the top public key.
-* Bob's Pubkeyhash is inserted
-* OP_EQUAL verifies that 2 top Pubkeyhash are identical. If yes, it replaces both entries by a true. If not, it replaces both entries as a false.
+* Duplicated PubKey is replaced by Bob's Pubkeyhash.
+* OP_EQUAL verifies that 2 top Pubkeyhash are identical. If yes, it replaces **both entries** by a true. If not, it replaces both entries as a false.
 * OP_VERIFY checks the value at the top of the stack. If false, script is terminated. If true, it pops the true off the stack.
 * OP_CHECKSIG now checks the Pubkey, all data required to be signed and the signature comes from the same person.
 
 ![Sample BTC Transaction](btc_tx_example.png)
 
 Refer to this sample [Bitcoin transaction](https://www.blockchain.com/btc/tx/9333d664ca86cba1754403841a9ac5800b85e1140609206be236dc3fe1917aef) as an example.
-
 
 ## Making MyCoin Smart
 
