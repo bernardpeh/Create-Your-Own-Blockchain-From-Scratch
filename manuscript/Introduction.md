@@ -39,13 +39,13 @@ In this course, we will take a dive into all the 6 components of the Blockchain 
 
 ## How the Course is Conducted
 
-The best way to learn about Blockchain is to learn how Bitcoin works since it is the first Blockchain application. The best resource for learning Bitcoin at the moment is still Satoshi's original [whitepaper](https://bitcoin.org/bitcoin.pdf) and [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook) by Andreas Antonopoulos.
+The best way to learn about Blockchain is to learn how Bitcoin works since it is the first Blockchain application. The best resource for learning Bitcoin at the moment is still [Satoshi's original whitepaper](https://bitcoin.org/bitcoin.pdf) and [Bitcoin Developer's Documentation](https://bitcoin.org/en/developer-documentation). This course aims to give readers hands-on experience to complement the Bitcoin Developer's Documentation.
 
-This course is an **intensive deep dive into the building blocks** of the Blockchain and how Bitcoin works. It is ideally conducted as a workshop in a computer lab where every participant can listen and code at the same time. **The course duration is estimated to be 15 hrs, consisting of 30% theory and 70% practical**.
+This course is an **intensive deep dive into the building blocks** of the Blockchain and how Bitcoin works. It is ideally conducted as a workshop in a computer lab where every participant can listen and code at the same time. **The course duration is estimated to be 15 to 21 hrs (depending on speed), consisting of 30% theory and 70% practical**.
 
 In every chapter, the theory will consists of going through some basic concepts with Questions and Answer sessions. Sample code will be provided. Participants are strongly advised to answer the questions and run the code in a separate branch in their own environment to see how things work.
  
-If participants got stuck, *they can use the source code from various chapters under the src dir* so as to keep the course moving. This is a hands-on course. The best way to learn is to experiment it and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
+If participants got stuck, *they can use the source code from various chapters under the src dir* so as to keep the course moving. Remember the best way to learn is to experiment yourself and make mistakes. Participants are strongly encouraged not to look at the answers unless absolutely necessary.
 
 ## The Challenge
 
