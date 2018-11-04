@@ -2,7 +2,39 @@
 
 > A timestamp server works by taking a hash of a block of items to be timestamped and widely publishing the hash, such as in a newspaper or Usenet post. The timestamp proves that the data must have existed at the time, obviously, in order to get into the hash. Each timestamp includes the previous timestamp in its hash, forming a chain, with each additional timestamp reinforcing the ones before it. - Bitcoin's Whitepaper
 
-The Blockchain is simply a chain of blocks. In the technical term, it is an insert only database. The ecosystem ensures that the data in the Blockchain cannot be changed and hence protect against [double spending](https://en.wikipedia.org/wiki/Double-spending) when used as a currency.
+It is interesting to note that Satoshi didn't use the term "Blockchain" in the entire white paper, but instead he used the word "timestamp server". However, in the code of his earliest commit, he did use the word "block chain" many times.
+
+```
+# https://github.com/bitcoin/bitcoin/blob/4405b78d6059e536c36974088a8ed4d9f0f29898/main.h
+
+//
+// The block chain is a tree shaped structure starting with the
+// genesis block at the root, with each block potentially having multiple
+// candidates to be the next block.  pprev and pnext link a path through the
+// main/longest chain.  A blockindex may have multiple pprev pointing back
+// to it, but pnext will only point forward to the longest branch, or will
+// be null if the block is not part of the longest chain.
+//
+class CBlockIndex
+{
+public:
+    const uint256* phashBlock;
+    CBlockIndex* pprev;
+    CBlockIndex* pnext;
+    unsigned int nFile;
+    unsigned int nBlockPos;
+    int nHeight;
+
+    // block header
+    int nVersion;
+    uint256 hashMerkleRoot;
+    unsigned int nTime;
+    unsigned int nBits;
+    unsigned int nNonce;
+    ...
+```
+
+Many people are confused with the word "Blockchain" today. Some even mixed it with consensus and incentivisation mechanism. Based on Satoshi's original definition, the Blockchain is simply a chain of blocks. In the technical term, it is an insert only database. The ecosystem ensures that the data in the Blockchain cannot be changed and hence protect against [double spending](https://en.wikipedia.org/wiki/Double-spending) when used as a currency.
 
 Each block consists of transactions and the miner (node) is responsible to assemble all the transactions in the block.
 
