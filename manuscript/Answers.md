@@ -164,7 +164,7 @@ Short Quiz 3. Not true. Mining a full block of transactions is not significantly
 
 Short Quiz 4. True. The biggest damage that a spy miner can do is to delay the transaction speed.
 
-Short Quiz 5. Maybe. Because bitcoin reward will keep halving until it reaches 21 million total circulation supply sometime in 2140. At that time, the only motivation of mining empty blocks is to disrupt the chain. There are no more mining reward, ie the only reward is from transaction fees. At that time, mining empty blocks will be expensive and serves has no monetary incentives.
+Short Quiz 5. True. Because bitcoin reward will keep halving until it reaches 21 million total circulation supply sometime in 2140. At that time, the only motivation of mining empty blocks is to disrupt the chain. There are no more mining reward, ie the only reward is from transaction fees. At that time, mining empty blocks will be expensive and serves has no monetary incentives.
 
 ## Chapter 4
 
