@@ -159,6 +159,18 @@ If a miner holds more than 50% of the total hashing power, they don’t really h
 
 ![51% attack and double spending](51percent.png)
 
+## Spy Mining
+
+Look at [this block](https://etherscan.io/block/6693829). Why are there no transactions in this block? Can you find other empty blocks mined by the same pool?
+
+Empty blocks are often included in the blockchain by large mining pools. Antpool, F2Pool, and BWPool always do that. By mining empty blocks, the miner do not get any transaction fees. Why would they do that?
+
+When a pool finds a new block, it will propagate the block header to its miners before broadcasting the other nodes in the network. This means that other nodes are slightly slower in mining the next block, ie the pool which mines the block gets a headstart to mine the next block. Doing so allows the pool to gain a headstart over other miners at hashing the next block. 
+
+It is possible for a pool to have a spy miner in its competitor's pool. When the spy miner receives a block header from the pool, it will pass on this information to its own pool. As the pool doesn't know the full transactions in the block, it will mine empty blocks, claiming the new block with just 1 coinbase transaction.
+
+Spy miners can have [detrimental effects](https://cryptocrimson.com/sharkpool-threatens-to-attack-all-bch-forks-except-for-craig-wrights-satoshis-vision/) to the network - Terrorism in the Blockchain?
+
 ## Testing
 
 In Terminal 1, start the node
@@ -220,5 +232,15 @@ C) Because we hope to have a predictable block hash.
 a) Any node can create new blocks
 B) Any new node must be approved by the network
 c) It is possible to find a block with the same hash
+
+? A spy Miner has better chance of finding a new block with lessser hashing power.
+
+a) True
+B) False
+
+? The biggest damage that a spy miner can do is to delay the transaction speed.
+
+A) True
+b) False
 
 {/quiz}

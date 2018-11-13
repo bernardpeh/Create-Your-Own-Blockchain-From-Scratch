@@ -160,6 +160,10 @@ Short Quiz 2. In Proof-of-Work, which of the following is false?
 
 Ans: Any new node must be approved by the network
 
+Short Quiz 3. Not true. Mining a full block of transactions is not significantly harder than mining an empty Block. Think of adding extra parameters into a function, it doesn't make finding the nonce any harder. The only benefit of a spy miner is milliseconds of head start in finding the next block.
+
+Short Quiz 4. True. The biggest damage that a spy miner can do is to delay the transaction speed.
+
 ## Chapter 4
 
 Q1. Why is Bitcoin address(eg 367f4YWz1VCFaqBqwbTrzwi2b1h2U3w1AF) much shorter than the public key we generated?
