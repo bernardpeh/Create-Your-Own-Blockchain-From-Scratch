@@ -36,7 +36,7 @@ The actual tx size is 249 bytes and it would take up 249 x 4 = 996 WU if its not
 
 What does all this mean? For a typical Bitcoin transaction of value, you get 33% discount on transaction fee if you use Segwit. You get bigger discount if your signature is bigger.
 
-[Segwit2x]((https://cointelegraph.com/news/bitcoin-core-developers-remain-adamant-in-opposition-to-segwit2x-potential-showdown-in-november)) combines Segwit in with a 2MB block size Hard-Fork instead of 1MB, meaning a maximum of 8000 WU. On November 8, 2017 the developers of SegWit2x announced that the planned hard fork had been canceled, due to a lack of sufficient consensus.
+[Segwit2x]((https://cointelegraph.com/news/bitcoin-core-developers-remain-adamant-in-opposition-to-segwit2x-potential-showdown-in-november) combines Segwit in with a 2MB block size Hard-Fork instead of 1MB, meaning a maximum of 8000 WU. On November 8, 2017 the developers of SegWit2x announced that the planned hard fork had been canceled, due to a lack of sufficient consensus.
 
 ## Transaction Malleability
 
