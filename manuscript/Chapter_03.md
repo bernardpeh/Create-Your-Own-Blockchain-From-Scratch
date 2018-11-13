@@ -243,4 +243,10 @@ B) False
 A) True
 b) False
 
+? There will be no spy miners for Bitcoin around the year 2140.
+
+A) True
+b) False
+C) Maybe
+
 {/quiz}
