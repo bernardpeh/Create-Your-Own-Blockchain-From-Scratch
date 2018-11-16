@@ -12,6 +12,14 @@ A peer-to-peer (P2P) network is a network in which interconnected nodes ("peers"
 
 * Decentralised System - Every node is fully redundant with no points of failure.
 
+## The CAP Theorem
+
+In a distributed system, the [CAP Theorem] (aka Brewer's theorem) says that it is only possible to get at most 2 out of 3 of the following properties:
+
+Consistency: Every read gets the same data with minimum delay (speed).
+Availability: There is enough nodes in the system to allow redundancies (cost).
+Partition tolerance: The system continues to function even if some nodes are malfunctioning or malicious (security).
+
 ## Creating a Simple P2P System with WebSocket
 
 [WebSockets](https://en.wikipedia.org/wiki/WebSocket) allow a long-held single TCP socket connection to be established between the client and server which allows for bi-directional, full duplex, messages to be instantly distributed with little overhead resulting in a very low latency connection.
